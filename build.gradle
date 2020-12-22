@@ -27,7 +27,7 @@ repositories {
     }
 }
 
-version = "${minecraft_version}-${mod_version}"
+version = "${mod_version}"
 group = 'com.tm.calemiutils'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
