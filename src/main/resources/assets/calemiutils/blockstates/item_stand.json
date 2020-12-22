@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "display=0": {
+      "model": "calemiutils:block/item_stand"
+    },
+    "display=1": {
+      "model": "calemiutils:block/item_stand_display"
+    },
+    "display=2": {
+      "model": "calemiutils:block/item_stand_slab"
+    },
+    "display=3": {
+      "model": "calemiutils:block/item_stand_nothing"
+    }
+  }
+}

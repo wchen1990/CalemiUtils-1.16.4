@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S ",
+    " B"
+  ],
+  "key": {
+    "B": {
+      "tag" : "forge:dyes/blue"
+    },
+    "S": {
+      "tag" : "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "calemiutils:pencil",
+    "count": 1
+  }
+}

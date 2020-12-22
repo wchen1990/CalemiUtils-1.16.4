@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GDG",
+    "DCD",
+    "GDG"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "G": {
+      "item": "calemiutils:gold_chip"
+    },
+    "C": {
+      "item": "calemiutils:coin_quarter"
+    }
+  },
+  "result": {
+    "item": "calemiutils:range_upgrade",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CSC",
+    "LML",
+    "CSC"
+  ],
+  "key": {
+    "C": {
+      "item": "calemiutils:gold_chip"
+    },
+    "L": {
+      "tag" : "minecraft:logs"
+    },
+    "S": {
+      "item": "minecraft:iron_sword"
+    },
+    "M": {
+      "item": "calemiutils:motor"
+    }
+  },
+  "result": {
+    "item": "calemiutils:mob_beacon",
+    "count": 1
+  }
+}

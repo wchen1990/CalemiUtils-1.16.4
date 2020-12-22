@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "calemiutils:block/torch_placer"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "calemiutils:block/coin_stack_base",
+  "textures": {
+    "0": "calemiutils:models/coin_stack_dollar",
+    "particle": "calemiutils:models/coin_stack_dollar"
+  }
+}

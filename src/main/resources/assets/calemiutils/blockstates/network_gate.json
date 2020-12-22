@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "connected=true": { "model": "calemiutils:block/network_gate_connected" },
+    "connected=false": { "model": "calemiutils:block/network_gate_disabled"}
+  }
+}

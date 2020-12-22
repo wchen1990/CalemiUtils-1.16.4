@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    " C ",
+    "RRR"
+  ],
+  "key": {
+    "C": {
+      "item": "calemiutils:gold_chip"
+    },
+    "R": {
+      "item" : "minecraft:smooth_stone"
+    },
+    "S": {
+      "item" : "minecraft:smooth_stone_slab"
+    }
+  },
+  "result": {
+    "item": "calemiutils:item_stand",
+    "count": 1
+  }
+}

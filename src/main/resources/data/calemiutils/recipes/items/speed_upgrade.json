@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "RCR",
+    "GRG"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "calemiutils:gold_chip"
+    },
+    "C": {
+      "item": "calemiutils:coin_quarter"
+    }
+  },
+  "result": {
+    "item": "calemiutils:speed_upgrade",
+    "count": 1
+  }
+}

@@ -1,0 +1,43 @@
+**REMOVE FROM HERE IF YOU WANT TO USE THIS FILE**
+
+If you want to use this file,
+1) Rename the file to "MarketItemsBuyList.json" or "MarketItemsSellList.json" depending on what you want.
+2) Move the file to config/CalemiUtils/
+3) Romove each **REMOVE THIS** statement and everything in between.
+
+Market Item Structure
+{
+  "(name here)": {                            "This name must be unique. The name is used in the code and doesn't do anything visually."
+      "index": 0,                             "The 'index' number must be unique and greater than -1. It is used to sort the items in the Market."
+      "stackStr": "minecraft:cobblestone",    "The 'stringStr' text is used to determine the Item."
+      "stackNBT": "",                         "The 'stackNBT' text is used to determine the Item's NBT. There must be a (\) before every quotation mark."
+      "amount": 32,                           "The 'amount' number must be greater than -1. It is is used to determine the amount."
+      "value": 16                             "The 'value' number must be greater than -1. It is is used to determine the cost or sell value of the item."
+  }
+}
+
+**REMOVE TO HERE IF YOU WANT TO USE THIS FILE**
+
+{
+  "TestBlock": {
+    "index": 0,
+    "stackStr": "minecraft:cobblestone",
+    "stackNBT": "",
+    "amount": 32,
+    "value": 16
+  },
+  "TestItem": {
+    "index": 1,
+    "stackStr": "minecraft:iron_ingot",
+    "stackNBT": "",
+    "amount": 1,
+    "value": 100
+  },
+  "TestSword": {
+    "index": 2,
+    "stackStr": "minecraft:diamond_sword",
+    "stackNBT": "{display:{Name:'[{\"text\":\"God Sword\",\"italic\":false}]'},Enchantments:[{id:sharpness,lvl:5}]}",
+    "amount": 1,
+    "value": 1000
+  }
+}

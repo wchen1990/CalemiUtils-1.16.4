@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "KXK",
+    " S ",
+    " S "
+  ],
+  "key": {
+
+    "S": {
+      "tag" : "forge:rods/wooden"
+    },
+
+    "K": {
+      "item": "calemiutils:knob_stone"
+    },
+
+    "X": {
+      "tag" : "quark:stone_tool_materials"
+    }
+  },
+  "result": {
+    "item": "calemiutils:sledgehammer_stone",
+    "count": 1
+  }
+}

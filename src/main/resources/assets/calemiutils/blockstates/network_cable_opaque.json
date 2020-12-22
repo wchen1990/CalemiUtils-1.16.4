@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "calemiutils:block/network_cable_opaque"
+    }
+  }
+}

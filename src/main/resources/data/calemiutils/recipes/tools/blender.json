@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IGI",
+    "IGI",
+    "IMI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "M": {
+      "item": "calemiutils:motor"
+    }
+  },
+  "result": {
+    "item": "calemiutils:blender",
+    "count": 1
+  }
+}

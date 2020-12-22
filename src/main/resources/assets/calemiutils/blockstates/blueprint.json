@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "color=blue": {
+      "model": "calemiutils:block/blueprint_blue"
+    },
+    "color=white": {
+      "model": "calemiutils:block/blueprint_white"
+    },
+    "color=orange": {
+      "model": "calemiutils:block/blueprint_orange"
+    },
+    "color=magenta": {
+      "model": "calemiutils:block/blueprint_magenta"
+    },
+    "color=light_blue": {
+      "model": "calemiutils:block/blueprint_light_blue"
+    },
+    "color=yellow": {
+      "model": "calemiutils:block/blueprint_yellow"
+    },
+    "color=lime": {
+      "model": "calemiutils:block/blueprint_lime"
+    },
+    "color=pink": {
+      "model": "calemiutils:block/blueprint_pink"
+    },
+    "color=gray": {
+      "model": "calemiutils:block/blueprint_gray"
+    },
+    "color=light_gray": {
+      "model": "calemiutils:block/blueprint_light_gray"
+    },
+    "color=cyan": {
+      "model": "calemiutils:block/blueprint_cyan"
+    },
+    "color=purple": {
+      "model": "calemiutils:block/blueprint_purple"
+    },
+    "color=brown": {
+      "model": "calemiutils:block/blueprint_brown"
+    },
+    "color=green": {
+      "model": "calemiutils:block/blueprint_green"
+    },
+    "color=red": {
+      "model": "calemiutils:block/blueprint_red"
+    },
+    "color=black": {
+      "model": "calemiutils:block/blueprint_black"
+    }
+  }
+}

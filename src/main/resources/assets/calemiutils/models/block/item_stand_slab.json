@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "calemiutils:models/item_stand",
+		"particle": "calemiutils:models/item_stand"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [1, 0, 1],
+			"to": [15, 4, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [1, 1, 15, 5], "texture": "#0"},
+				"east": {"uv": [1, 1, 15, 5], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 5], "texture": "#0"},
+				"west": {"uv": [1, 1, 15, 5], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#0"}
+			}
+		}
+	]
+}

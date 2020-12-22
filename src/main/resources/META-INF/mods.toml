@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+license="GNU General Public License v3.0"
+
+[[mods]]
+modId="calemiutils"
+namespace="calemiutils"
+version="1.0.0"
+displayName="Calemi's Utils"
+authors="Calemi, Kryto627"
+description='''
+    Utilities that make your Minecraft experience better!
+    '''
+
+[[dependencies.cspirit]]
+modId="forge"
+mandatory=true
+versionRange="[31,)"
+ordering="NONE"
+side="BOTH"

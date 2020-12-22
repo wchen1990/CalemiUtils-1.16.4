@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "calemiutils:network_cable_opaque"
+    }
+  ],
+  "result": {
+    "item": "calemiutils:network_cable",
+    "count": 1
+  }
+}

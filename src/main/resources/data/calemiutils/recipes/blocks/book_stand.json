@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    " C ",
+    "WWW"
+  ],
+  "key": {
+    "C": {
+      "item": "calemiutils:gold_chip"
+    },
+    "W": {
+      "tag" : "minecraft:planks"
+    },
+    "S": {
+      "tag" : "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "calemiutils:book_stand",
+    "count": 1
+  }
+}
