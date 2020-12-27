@@ -1,6 +1,6 @@
 package com.tm.calemiutils.util.helper;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.ItemWallet;

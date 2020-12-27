@@ -1,6 +1,6 @@
 package com.tm.calemiutils.enchantment;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.item.ItemSledgehammer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;

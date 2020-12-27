@@ -15,7 +15,8 @@ public enum SledgehammerTiers implements IItemTier {
     IRON      (83 * 10, 6F, 8F, 2, 14, 25, 1.3F, () -> {return Ingredient.fromItems(Items.IRON_INGOT);}),
     GOLD      (11 * 10, 12F, 6F, 0, 22, 15, 1.3F, () -> {return Ingredient.fromItems(Items.GOLD_INGOT);}),
     DIAMOND   (520 * 10, 8F, 8F, 3, 10, 20, 1.3F, () -> {return Ingredient.fromItems(Items.DIAMOND);}),
-    STARLIGHT (10000000, 20F, 15F, 5, 25, 15, 1.3F, () -> null);
+    NETHERITE (677 * 10, 9F, 9F, 4, 15, 15, 1.3F, () -> {return Ingredient.fromItems(Items.NETHERITE_INGOT);}),
+    STARLIGHT (10000000, 20F, 15F, 5, 25, 10, 1.3F, () -> null);
 
     public final int durability;
     public final float efficiency;

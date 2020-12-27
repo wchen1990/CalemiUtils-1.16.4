@@ -1,6 +1,6 @@
 package com.tm.calemiutils.init;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 

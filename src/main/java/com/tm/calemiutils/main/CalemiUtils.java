@@ -1,4 +1,4 @@
-package com.tm.calemiutils;
+package com.tm.calemiutils.main;
 
 import com.tm.calemiutils.command.CUCommandBase;
 import com.tm.calemiutils.command.DyeColorArgument;

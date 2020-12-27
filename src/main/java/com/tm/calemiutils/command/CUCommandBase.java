@@ -1,6 +1,6 @@
 package com.tm.calemiutils.command;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.block.BlockBlueprint;
 import com.tm.calemiutils.config.MarketItemsFile;
 import com.tm.calemiutils.init.InitItems;

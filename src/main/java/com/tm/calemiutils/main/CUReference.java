@@ -1,11 +1,11 @@
-package com.tm.calemiutils;
+package com.tm.calemiutils.main;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 public class CUReference {
 
-    public static final String MOD_ID = "com/tm/calemiutils";
+    public static final String MOD_ID = "calemiutils";
     public static final String MOD_NAME = "Calemi's Utils";
     public static final String CONFIG_DIR = FMLPaths.CONFIGDIR.get().toString() + "/CalemiUtils";
 

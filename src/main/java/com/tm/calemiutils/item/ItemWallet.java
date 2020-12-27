@@ -1,7 +1,7 @@
 package com.tm.calemiutils.item;
 
 import com.tm.calemiutils.config.CUConfig;
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.integration.curios.CuriosIntegration;
 import com.tm.calemiutils.inventory.ContainerWallet;
 import com.tm.calemiutils.inventory.base.ItemStackInventory;

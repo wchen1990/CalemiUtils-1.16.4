@@ -1,6 +1,6 @@
 package com.tm.calemiutils.block.base;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
 package com.tm.calemiutils.gui;
 
-import com.tm.calemiutils.CUReference;
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CUReference;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.config.MarketItemsFile;
 import com.tm.calemiutils.gui.base.ButtonRect;
 import com.tm.calemiutils.gui.base.GuiScreenBase;

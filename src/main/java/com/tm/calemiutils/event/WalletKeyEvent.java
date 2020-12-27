@@ -1,6 +1,6 @@
 package com.tm.calemiutils.event;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.init.InitKeyBindings;
 import com.tm.calemiutils.packet.PacketOpenWallet;
 import com.tm.calemiutils.util.helper.CurrencyHelper;

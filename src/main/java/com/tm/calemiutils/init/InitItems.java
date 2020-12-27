@@ -1,6 +1,6 @@
 package com.tm.calemiutils.init;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.block.base.BlockItemBase;
 import com.tm.calemiutils.item.*;
 import com.tm.calemiutils.item.base.ItemBase;
@@ -87,6 +87,7 @@ public class InitItems {
     public static final RegistryObject<Item> KNOB_IRON = ITEMS.register("knob_iron", ItemBase::new);
     public static final RegistryObject<Item> KNOB_GOLD = ITEMS.register("knob_gold", ItemBase::new);
     public static final RegistryObject<Item> KNOB_DIAMOND = ITEMS.register("knob_diamond", ItemBase::new);
+    public static final RegistryObject<Item> KNOB_NETHERITE = ITEMS.register("knob_netherite", ItemBase::new);
     public static final RegistryObject<Item> KNOB_STARLIGHT = ITEMS.register("knob_starlight", () -> new ItemBase().setEffect().setRarity(Rarity.RARE));
 
     public static final RegistryObject<Item> SLEDGEHAMMER_WOOD = ITEMS.register("sledgehammer_wood", () -> new ItemSledgehammer(SledgehammerTiers.WOOD));
@@ -94,6 +95,7 @@ public class InitItems {
     public static final RegistryObject<Item> SLEDGEHAMMER_IRON = ITEMS.register("sledgehammer_iron", () -> new ItemSledgehammer(SledgehammerTiers.IRON));
     public static final RegistryObject<Item> SLEDGEHAMMER_GOLD = ITEMS.register("sledgehammer_gold", () -> new ItemSledgehammer(SledgehammerTiers.GOLD));
     public static final RegistryObject<Item> SLEDGEHAMMER_DIAMOND = ITEMS.register("sledgehammer_diamond", () -> new ItemSledgehammer(SledgehammerTiers.DIAMOND));
+    public static final RegistryObject<Item> SLEDGEHAMMER_NETHERITE = ITEMS.register("sledgehammer_netherite", () -> new ItemSledgehammer(SledgehammerTiers.NETHERITE));
     public static final RegistryObject<Item> SLEDGEHAMMER_STARLIGHT = ITEMS.register("sledgehammer_starlight", () -> new ItemSledgehammer(SledgehammerTiers.STARLIGHT));
 
     public static final RegistryObject<Item> SECURITY_WRENCH = ITEMS.register("security_wrench", ItemSecurityWrench::new);

@@ -1,6 +1,6 @@
 package com.tm.calemiutils.item;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.item.base.ItemBase;
 import com.tm.calemiutils.util.helper.LoreHelper;
 import net.minecraft.client.util.ITooltipFlag;

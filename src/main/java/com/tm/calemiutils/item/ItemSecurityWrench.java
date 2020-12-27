@@ -1,7 +1,7 @@
 package com.tm.calemiutils.item;
 
 import com.tm.calemiutils.config.CUConfig;
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.event.WrenchEvent;
 import com.tm.calemiutils.item.base.ItemBase;
 import com.tm.calemiutils.security.ISecurity;

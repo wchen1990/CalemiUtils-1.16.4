@@ -1,6 +1,6 @@
 package com.tm.calemiutils.init;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.enchantment.EnchantmentCrushing;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.fml.RegistryObject;

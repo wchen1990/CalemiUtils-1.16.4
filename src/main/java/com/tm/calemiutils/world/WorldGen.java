@@ -1,6 +1,6 @@
 package com.tm.calemiutils.world;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.init.InitItems;
 import net.minecraft.util.registry.Registry;

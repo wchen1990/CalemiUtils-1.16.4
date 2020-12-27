@@ -1,6 +1,6 @@
 package com.tm.calemiutils.gui;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.gui.base.PencilButton;
 import com.tm.calemiutils.gui.base.GuiScreenBase;
 import com.tm.calemiutils.packet.PacketPencilSetColor;

@@ -1,6 +1,6 @@
 package com.tm.calemiutils.item;
 
-import com.tm.calemiutils.CalemiUtils;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.init.InitEnchantments;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.util.Location;

@@ -1,6 +1,6 @@
 package com.tm.calemiutils.gui.base;
 
-import com.tm.calemiutils.CUReference;
+import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.config.MarketItemsFile;
 import com.tm.calemiutils.util.helper.ScreenHelper;
 import com.mojang.blaze3d.matrix.MatrixStack;
