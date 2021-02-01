@@ -48,7 +48,7 @@ public class ItemPencil extends ItemBase {
     /**
      * Gets the color id of a given Pencil Stack.
      */
-    public int getColorId (ItemStack stack) {
+    public static int getColorId (ItemStack stack) {
 
         int meta = 11;
 
@@ -62,7 +62,7 @@ public class ItemPencil extends ItemBase {
     /**
      * Sets the Pencil's color by id.
      */
-    public void setColorById (ItemStack stack, int meta) {
+    public static void setColorById (ItemStack stack, int meta) {
         ItemHelper.getNBT(stack).putInt("color", meta);
     }
 

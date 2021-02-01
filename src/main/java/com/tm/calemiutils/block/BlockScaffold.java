@@ -33,7 +33,7 @@ import java.util.List;
 public class BlockScaffold extends BlockBase {
 
     public BlockScaffold () {
-        super(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(0.1F).harvestLevel(0).harvestTool(ToolType.PICKAXE).notSolid().variableOpacity());
+        super(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(0.25F).harvestLevel(0).harvestTool(ToolType.PICKAXE).notSolid().variableOpacity());
     }
 
     @Override

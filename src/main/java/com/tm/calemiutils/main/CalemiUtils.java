@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.command.arguments.ArgumentSerializer;
 import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -63,6 +64,7 @@ public class CalemiUtils {
 
         InitSounds.SOUNDS.register(MOD_EVENT_BUS);
         InitTileEntityTypes.TILE_ENTITY_TYPES.register(MOD_EVENT_BUS);
+        InitRecipes.RECIPES.register(MOD_EVENT_BUS);
         InitContainerTypes.CONTAINER_TYPES.register(MOD_EVENT_BUS);
         InitEnchantments.ENCHANTMENTS.register(MOD_EVENT_BUS);
 
@@ -100,6 +102,8 @@ public class CalemiUtils {
     }
 
     private void doClientStuff (final FMLClientSetupEvent event) {
+
+        ItemModelsProperties.registerProperty(InitItems.BLUEPRINT_ITEM.get(), new ResourceLocation("color"), (stack, world, player) -> stack.getDamage());
 
         MinecraftForge.EVENT_BUS.register(new WrenchLoreEvent());
         MinecraftForge.EVENT_BUS.register(new SledgehammerChargeOverlayEvent());

@@ -76,7 +76,7 @@ public abstract class BlockInventoryContainerBase extends BlockContainerBase {
 
         if (player instanceof ServerPlayerEntity && tileEntity instanceof INamedContainerProvider) {
 
-            if (SecurityHelper.openSecuredBlock(location, player, true)) {
+            if (SecurityHelper.canUseSecuredBlock(location, player, true)) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, pos);
             }
         }

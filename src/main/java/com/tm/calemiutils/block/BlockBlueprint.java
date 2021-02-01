@@ -13,12 +13,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -151,6 +154,18 @@ public class BlockBlueprint extends BlockColoredBase {
         }
     }
 
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        world.setBlockState(pos, state.with(COLOR, DyeColor.byId(stack.getDamage())));
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        ItemStack stack = new ItemStack(this);
+        stack.setDamage(state.get(COLOR).getId());
+        return stack;
+    }
+
     /*
         Methods for Blocks that are not full and solid cubes.
      */
@@ -164,5 +179,11 @@ public class BlockBlueprint extends BlockColoredBase {
     @Override
     public boolean propagatesSkylightDown (BlockState state, IBlockReader world, BlockPos pos) {
         return true;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return 1.0F;
     }
 }

@@ -31,7 +31,7 @@ import java.util.List;
 public class BlockMarket extends BlockContainerBase {
 
     public BlockMarket() {
-        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 3600000.0F));
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2));
     }
 
     @Override

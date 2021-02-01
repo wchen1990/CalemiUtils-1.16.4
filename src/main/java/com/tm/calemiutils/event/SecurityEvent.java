@@ -2,6 +2,8 @@ package com.tm.calemiutils.event;
 
 import com.tm.calemiutils.security.ISecurity;
 import com.tm.calemiutils.tileentity.base.TileEntityBase;
+import com.tm.calemiutils.util.Location;
+import com.tm.calemiutils.util.helper.SecurityHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.world.BlockEvent;
@@ -24,6 +26,16 @@ public class SecurityEvent {
 
             security.getSecurityProfile().setOwner((PlayerEntity) event.getEntity());
             ((TileEntityBase) tileEntity).markForUpdate();
+        }
+    }
+
+    @SubscribeEvent
+    public void onBlockBreak (BlockEvent.BreakEvent event) {
+
+        Location location = new Location(event.getPlayer().world, event.getPos());
+
+        if (!SecurityHelper.canUseSecuredBlock(location, event.getPlayer(), true)) {
+            event.setCanceled(true);
         }
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class SecurityHelper {
 
-    public static boolean openSecuredBlock (Location location, PlayerEntity player, boolean printError) {
+    public static boolean canUseSecuredBlock(Location location, PlayerEntity player, boolean printError) {
 
         TileEntity tileEntity = location.getTileEntity();
 

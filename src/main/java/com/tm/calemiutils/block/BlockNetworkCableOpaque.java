@@ -18,7 +18,7 @@ import java.util.List;
 public class BlockNetworkCableOpaque extends BlockContainerBase {
 
     public BlockNetworkCableOpaque () {
-        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 3600000.0F).harvestLevel(0));
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2).harvestLevel(0));
     }
 
     public BlockNetworkCableOpaque (Properties properties) {

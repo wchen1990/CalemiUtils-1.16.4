@@ -44,7 +44,7 @@ public class BlockNetworkCable extends BlockNetworkCableOpaque {
     private static final VoxelShape EASTWEST_AABB = makeCuboidShape(0, 5, 5, 16, 11, 11);
 
     public BlockNetworkCable () {
-        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 3600000.0F).harvestLevel(0).notSolid().variableOpacity());
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2).harvestLevel(0).notSolid().variableOpacity());
         setDefaultState(stateContainer.getBaseState().with(UP, false).with(DOWN, false).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(DOWNUP, false).with(NORTHSOUTH, false).with(EASTWEST, false));
     }
 

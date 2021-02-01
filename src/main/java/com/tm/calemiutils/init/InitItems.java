@@ -34,7 +34,7 @@ public class InitItems {
     public static final RegistryObject<Block> COIN_STACK_DOLLAR = BLOCKS.register("coin_stack_dollar", BlockCoinStack::new);
 
     public static final RegistryObject<Block> BLUEPRINT = BLOCKS.register("blueprint", BlockBlueprint::new);
-    public static final RegistryObject<Item> BLUEPRINT_ITEM = ITEMS.register("blueprint", () -> new BlockItemBase(BLUEPRINT.get(), false));
+    public static final RegistryObject<Item> BLUEPRINT_ITEM = ITEMS.register("blueprint", BlockBlueprintItem::new);
 
     public static final RegistryObject<Block> IRON_SCAFFOLD = BLOCKS.register("iron_scaffold", BlockScaffold::new);
     public static final RegistryObject<Item> IRON_SCAFFOLD_ITEM = ITEMS.register("iron_scaffold", () -> new BlockItemBase(IRON_SCAFFOLD.get()));

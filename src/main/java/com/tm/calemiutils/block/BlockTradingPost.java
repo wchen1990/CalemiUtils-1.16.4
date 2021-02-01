@@ -36,7 +36,7 @@ public class BlockTradingPost extends BlockInventoryContainerBase {
     private static final VoxelShape AABB = Block.makeCuboidShape(0, 0, 0, 16, 5, 16);
 
     public BlockTradingPost () {
-        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(-1.0F, 3600000.0F).notSolid().variableOpacity());
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2).notSolid().variableOpacity());
     }
 
     @Override
