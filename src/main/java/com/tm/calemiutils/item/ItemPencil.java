@@ -104,6 +104,11 @@ public class ItemPencil extends ItemBase {
                 if (!location.isBlockValidForPlacing()) return ActionResultType.FAIL;
             }
 
+            //Checks if the Player is not at that location.
+            if (location.isEntityAtLocation(player)) {
+                return ActionResultType.FAIL;
+            }
+
             //Checks if the Player can edit the Location.
             if (!player.canPlayerEdit(pos, dir, player.getHeldItem(hand))) return ActionResultType.FAIL;
 

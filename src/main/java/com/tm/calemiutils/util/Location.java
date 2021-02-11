@@ -1,6 +1,5 @@
 package com.tm.calemiutils.util;
 
-import com.tm.calemiutils.util.helper.ItemHelper;
 import com.tm.calemiutils.util.helper.SoundHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
@@ -17,12 +17,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.extensions.IForgeBlockState;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Location {
 
@@ -165,26 +163,15 @@ public class Location {
 
     public void breakBlock(PlayerEntity player, ItemStack heldItem) {
 
-        boolean forgeStateCanDestroy = getForgeBlockState().canEntityDestroy(player.world, blockPos, player);
-        boolean forgeEntityCanDestroy = ForgeHooks.canEntityDestroy(world, blockPos, player);
-        boolean forgeOnDestroy = ForgeEventFactory.onEntityDestroyBlock(player, blockPos, getBlockState());
-        boolean playerCanEdit = player.canPlayerEdit(blockPos, Direction.UP, heldItem);
-
-        if (forgeStateCanDestroy && forgeEntityCanDestroy && forgeOnDestroy && playerCanEdit) {
-
-            if (!world.isRemote && world.getServer() != null) {
-
-                boolean worldDedicatedServer = world.getServer().isDedicatedServer();
-                boolean worldBlockProtected = world.getServer().isBlockProtected(Objects.requireNonNull(world.getServer().getWorld(world.getDimensionKey())), blockPos, player);
-
-                if (!worldDedicatedServer || !worldBlockProtected) {
-                    if (!player.isCreative()) ItemHelper.spawnStacksAtLocation(world, this, getDrops(player, heldItem));
-                    setBlockToAir();
-                }
-            }
-
-            SoundHelper.playBlockPlaceSound(world, player, getBlockState(), this);
+        if (player instanceof FakePlayer) {
+            return;
         }
+
+        if (player instanceof ServerPlayerEntity) {
+            ((ServerPlayerEntity) player).interactionManager.tryHarvestBlock(blockPos);
+        }
+
+        SoundHelper.playBlockPlaceSound(world, player, getBlockState(), this);
     }
 
     public boolean isZero() {
@@ -201,6 +188,15 @@ public class Location {
 
     public boolean isFullCube() {
         return getBlockState().isOpaqueCube(world, getBlockPos());
+    }
+
+    public boolean isEntityAtLocation(Entity entity) {
+
+        int entityX = entity.getPosition().getX();
+        int entityY = entity.getPosition().getY();
+        int entityZ = entity.getPosition().getZ();
+
+        return entityX == x && entityZ == z && (entityY == y || entityY + 1 == y);
     }
 
     public boolean doesBlockHaveCollision() {

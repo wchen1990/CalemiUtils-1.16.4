@@ -33,13 +33,13 @@ public class WorldEditHelper {
             if (mask == Blocks.AIR.getDefaultState() && nextLocation.isBlockValidForPlacing()) {
 
                 count++;
-                nextLocation.setBlock(blockToPlace, player);
+                nextLocation.setBlock(blockToPlace);
             }
 
             else if (nextLocation.getForgeBlockState() == mask) {
 
                 count++;
-                nextLocation.setBlock(blockToPlace, player);
+                nextLocation.setBlock(blockToPlace);
             }
         }
 

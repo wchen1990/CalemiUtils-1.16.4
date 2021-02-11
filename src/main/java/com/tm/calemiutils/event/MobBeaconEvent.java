@@ -2,6 +2,7 @@ package com.tm.calemiutils.event;
 
 import com.tm.calemiutils.tileentity.TileEntityMobBeacon;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.monster.HoglinEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -22,8 +23,8 @@ public class MobBeaconEvent {
         //Checks if its a natural spawn or a reinforcement.
         if (event.getSpawnReason() == SpawnReason.NATURAL || event.getSpawnReason() == SpawnReason.REINFORCEMENT) {
 
-            //Checks if the entity is a monster.
-            if (event.getEntity() instanceof MonsterEntity) {
+            //Checks if the entity is a monster or a Hoglin.
+            if (event.getEntity() instanceof MonsterEntity || event.getEntity() instanceof HoglinEntity) {
 
                 IWorld world = event.getWorld();
                 MonsterEntity entity = (MonsterEntity) event.getEntity();

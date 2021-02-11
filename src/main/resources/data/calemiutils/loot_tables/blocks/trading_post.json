@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "calemiutils:network_cable"
+          "name": "calemiutils:trading_post"
         }
       ],
       "conditions": [

@@ -4,14 +4,14 @@ import com.tm.calemiutils.command.CUCommandBase;
 import com.tm.calemiutils.command.DyeColorArgument;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.config.MarketItemsFile;
+import com.tm.calemiutils.event.*;
 import com.tm.calemiutils.gui.*;
 import com.tm.calemiutils.init.*;
+import com.tm.calemiutils.packet.*;
 import com.tm.calemiutils.render.RenderBookStand;
 import com.tm.calemiutils.render.RenderItemStand;
 import com.tm.calemiutils.render.RenderTradingPost;
 import com.tm.calemiutils.world.WorldGen;
-import com.tm.calemiutils.event.*;
-import com.tm.calemiutils.packet.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.command.arguments.ArgumentSerializer;
 import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -46,21 +45,25 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class CalemiUtils {
 
+    public static CalemiUtils instance;
+
+    public static IEventBus MOD_EVENT_BUS;
+    public static SimpleChannel network;
+
     public static final ResourceLocation EMPTY_WALLET_SLOT = new ResourceLocation(CUReference.MOD_ID, "gui/empty_wallet_slot");
     public static boolean curiosLoaded = false;
 
     public static final ItemGroup TAB = new CUTab();
-    public static CalemiUtils instance;
-    public static SimpleChannel network;
-    public static IEventBus MOD_EVENT_BUS;
 
     public CalemiUtils () {
+
+        instance = this;
 
         curiosLoaded = ModList.get().isLoaded("curios");
 
         MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
-        MOD_EVENT_BUS.addListener(this::setup);
-        MOD_EVENT_BUS.addListener(this::doClientStuff);
+        MOD_EVENT_BUS.addListener(this::onCommonSetup);
+        MOD_EVENT_BUS.addListener(this::onClientSetup);
 
         InitSounds.SOUNDS.register(MOD_EVENT_BUS);
         InitTileEntityTypes.TILE_ENTITY_TYPES.register(MOD_EVENT_BUS);
@@ -71,12 +74,11 @@ public class CalemiUtils {
         InitItems.init();
         MarketItemsFile.init();
 
-        instance = this;
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CUConfig.spec, CUReference.CONFIG_DIR + "/CalemiUtilsCommon.toml");
     }
 
-    private void setup (final FMLCommonSetupEvent event) {
+    private void onCommonSetup(final FMLCommonSetupEvent event) {
 
         WorldGen.initOres();
 
@@ -101,9 +103,7 @@ public class CalemiUtils {
         ArgumentTypes.register("cu:color", DyeColorArgument.class, new ArgumentSerializer<>(DyeColorArgument::color));
     }
 
-    private void doClientStuff (final FMLClientSetupEvent event) {
-
-        ItemModelsProperties.registerProperty(InitItems.BLUEPRINT_ITEM.get(), new ResourceLocation("color"), (stack, world, player) -> stack.getDamage());
+    private void onClientSetup(final FMLClientSetupEvent event) {
 
         MinecraftForge.EVENT_BUS.register(new WrenchLoreEvent());
         MinecraftForge.EVENT_BUS.register(new SledgehammerChargeOverlayEvent());
@@ -130,6 +130,7 @@ public class CalemiUtils {
         ClientRegistry.bindTileEntityRenderer(InitTileEntityTypes.TRADING_POST.get(), RenderTradingPost::new);
 
         InitKeyBindings.init();
+        InitModelOverrides.init();
     }
 
     @SubscribeEvent
