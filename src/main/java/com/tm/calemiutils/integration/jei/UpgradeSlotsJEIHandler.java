@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Used to add special behaviors to JEI.
  */
-public class ScreenJEIHandler implements IGuiContainerHandler<ContainerScreenBase<?>> {
+public class UpgradeSlotsJEIHandler implements IGuiContainerHandler<ContainerScreenBase<?>> {
 
     /**
      * Prevents JEI from rendering Items over the GUI.

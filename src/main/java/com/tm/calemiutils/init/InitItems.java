@@ -51,6 +51,9 @@ public class InitItems {
     public static final RegistryObject<Block> TORCH_PLACER = BLOCKS.register("torch_placer", BlockTorchPlacer::new);
     public static final RegistryObject<Item> TORCH_PLACER_ITEM = ITEMS.register("torch_placer", () -> new BlockItemBase(TORCH_PLACER.get()));
 
+    public static final RegistryObject<Block> BLUEPRINT_FILLER = BLOCKS.register("blueprint_filler", BlockBlueprintFiller::new);
+    public static final RegistryObject<Item> BLUEPRINT_FILLER_ITEM = ITEMS.register("blueprint_filler", () -> new BlockItemBase(BLUEPRINT_FILLER.get()));
+
     public static final RegistryObject<Block> BANK = BLOCKS.register("bank", BlockBank::new);
     public static final RegistryObject<Item> BANK_ITEM = ITEMS.register("bank", () -> new BlockItemBase(BANK.get()));
 

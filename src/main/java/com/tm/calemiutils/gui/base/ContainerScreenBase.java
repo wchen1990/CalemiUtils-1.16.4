@@ -214,14 +214,14 @@ public abstract class ContainerScreenBase<T extends ContainerBase> extends Conta
                 addCurrencyTab(matrixStack, mouseX, mouseY, tileEntityBank.getStoredCurrency(), tileEntityBank.getMaxCurrency());
             }
 
-            //If the Tile Entity has a progress bar, render it.
+            //If the Tile Entity has a progress bar, render it. (Currently Disabled)
             if (tileEntity instanceof IProgress) {
 
                 IProgress tileEntityProgress = (IProgress) tileEntity;
                 ContainerBase containerBase = (ContainerBase) container;
 
                 GL11.glColor3f(1, 1, 1);
-                addProgressHoveringText(matrixStack, mouseX, mouseY, currentProgress, tileEntityProgress.getMaxProgress());
+                //addProgressHoveringText(matrixStack, mouseX, mouseY, currentProgress, tileEntityProgress.getMaxProgress());
             }
         }
     }

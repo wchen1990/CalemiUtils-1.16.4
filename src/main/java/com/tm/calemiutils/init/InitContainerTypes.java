@@ -14,6 +14,7 @@ public class InitContainerTypes {
 
     public static final RegistryObject<ContainerType<ContainerWallet>> WALLET = CONTAINER_TYPES.register("wallet", () -> IForgeContainerType.create(ContainerWallet::createClientWallet));
     public static final RegistryObject<ContainerType<ContainerTorchPlacer>> TORCH_PLACER = CONTAINER_TYPES.register("torch_placer", () -> IForgeContainerType.create(ContainerTorchPlacer::new));
+    public static final RegistryObject<ContainerType<ContainerBlueprintFiller>> BLUEPRINT_FILLER = CONTAINER_TYPES.register("blueprint_filler", () -> IForgeContainerType.create(ContainerBlueprintFiller::new));
     public static final RegistryObject<ContainerType<ContainerBookStand>> BOOK_STAND = CONTAINER_TYPES.register("book_stand", () -> IForgeContainerType.create(ContainerBookStand::new));
     public static final RegistryObject<ContainerType<ContainerItemStand>> ITEM_STAND = CONTAINER_TYPES.register("item_stand", () -> IForgeContainerType.create(ContainerItemStand::new));
     public static final RegistryObject<ContainerType<ContainerBank>> BANK = CONTAINER_TYPES.register("bank", () -> IForgeContainerType.create(ContainerBank::new));

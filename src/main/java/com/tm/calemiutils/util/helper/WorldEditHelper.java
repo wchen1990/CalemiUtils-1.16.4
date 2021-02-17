@@ -22,7 +22,7 @@ public class WorldEditHelper {
 
         if (list.size() > CUConfig.blockScans.worldEditMaxSize.get()) {
             message.printMessage(TextFormatting.RED, "Too many blocks to fill!");
-            message.printMessage(TextFormatting.RED, "You are " + StringHelper.printCommas(list.size() - CUConfig.blockScans.worldEditMaxSize.get()) + " blocks over!");
+            message.printMessage(TextFormatting.RED, "You are " + StringHelper.printCommas(list.size() - CUConfig.blockScans.worldEditMaxSize.get()) + " blocks over the max amount!");
             return;
         }
 

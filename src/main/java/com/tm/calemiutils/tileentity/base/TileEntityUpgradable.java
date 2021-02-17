@@ -1,6 +1,5 @@
 package com.tm.calemiutils.tileentity.base;
 
-import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.util.helper.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.container.Slot;
@@ -45,10 +44,6 @@ public abstract class TileEntityUpgradable extends TileEntityInventoryBase imple
     private int getScaledSlot (int slot, int min, int max) {
         int difference = max - min;
         return min + MathHelper.scaleInt(getUpgradeInventory().getStackInSlot(slot).getCount(), 5, difference);
-    }
-
-    protected int scaleCost (int cost) {
-        return cost + (cost * CUConfig.misc.speedUpgradeCostMultiplier.get() * getUpgradeInventory().getStackInSlot(getSpeedSlot()).getCount());
     }
 
     protected void tickProgress () {

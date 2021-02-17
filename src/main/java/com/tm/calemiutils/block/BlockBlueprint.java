@@ -65,10 +65,10 @@ public class BlockBlueprint extends BlockColoredBase {
 
             //Checking if the VeinScan list exceeds the config option. If so, print the max scan size.
             if (scan.buffer.size() >= CUConfig.blockScans.veinScanMaxSize.get()) {
-                message.printMessage(TextFormatting.GREEN, "There are " + CUConfig.blockScans.veinScanMaxSize + "+ connected Blueprints");
+                message.printMessage(TextFormatting.GREEN, "There are over " + CUConfig.blockScans.veinScanMaxSize.get() + "+ connected Blueprint");
             }
 
-            else message.printMessage(TextFormatting.GREEN, "There are " + ItemHelper.countByStacks(scan.buffer.size()) + " connected Blueprints");
+            else message.printMessage(TextFormatting.GREEN, "There are " + ItemHelper.countByStacks(scan.buffer.size()));
         }
     }
 

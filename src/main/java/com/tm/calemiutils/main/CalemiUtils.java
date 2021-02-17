@@ -92,6 +92,7 @@ public class CalemiUtils {
         network.registerMessage(++id, PacketOpenWallet.class, PacketOpenWallet::toBytes, PacketOpenWallet::new, PacketOpenWallet::handle);
         network.registerMessage(++id, PacketBank.class, PacketBank::toBytes, PacketBank::new, PacketBank::handle);
         network.registerMessage(++id, PacketTradingPost.class, PacketTradingPost::toBytes, PacketTradingPost::new, PacketTradingPost::handle);
+        network.registerMessage(++id, PacketBlueprintFiller.class, PacketBlueprintFiller::toBytes, PacketBlueprintFiller::new, PacketBlueprintFiller::handle);
         network.registerMessage(++id, PacketMarketOptions.class, PacketMarketOptions::toBytes, PacketMarketOptions::new, PacketMarketOptions::handle);
         network.registerMessage(++id, PacketMarketTrade.class, PacketMarketTrade::toBytes, PacketMarketTrade::new, PacketMarketTrade::handle);
 
@@ -120,6 +121,7 @@ public class CalemiUtils {
 
         ScreenManager.registerFactory(InitContainerTypes.WALLET.get(), ScreenWallet::new);
         ScreenManager.registerFactory(InitContainerTypes.TORCH_PLACER.get(), ScreenTorchPlacer::new);
+        ScreenManager.registerFactory(InitContainerTypes.BLUEPRINT_FILLER.get(), ScreenBlueprintFiller::new);
         ScreenManager.registerFactory(InitContainerTypes.BOOK_STAND.get(), ScreenOneSlot::new);
         ScreenManager.registerFactory(InitContainerTypes.ITEM_STAND.get(), ScreenOneSlot::new);
         ScreenManager.registerFactory(InitContainerTypes.BANK.get(), ScreenBank::new);

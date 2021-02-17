@@ -4,7 +4,6 @@ import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.tileentity.TileEntityTradingPost;
 import com.tm.calemiutils.util.Location;
 import com.tm.calemiutils.util.helper.ChatHelper;
-import com.tm.calemiutils.util.helper.ItemHelper;
 import com.tm.calemiutils.util.helper.StringHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,8 +18,7 @@ public class PacketTradingPost {
 
     private String command;
     private BlockPos pos;
-    private int stackStrSize, nbtStrSize;
-    private String stack, nbt;
+    private ItemStack stackForSale;
     private boolean buyMode;
     private int amount;
     private int price;
@@ -31,21 +29,15 @@ public class PacketTradingPost {
      * Used to sync the data of the Trading Post.
      * @param command Used to determine the type of packet to send.
      * @param pos The Block position of the Tile Entity.
-     * @param stackStrSize The String size of the Item Stack packet.
-     * @param nbtStrSize The String size of the Item Stack's NBT packet.
-     * @param stack The Item Stack's string conversion.
-     * @param nbt The Item Stack's NBT string conversion.
+     * @param stackForSale The Item Stack's string conversion.
      * @param buyMode The state of the buyMode option.
      * @param amount The number of the amount option.
      * @param price The number of the price option.
      */
-    public PacketTradingPost (String command, BlockPos pos, int stackStrSize, int nbtStrSize, String stack, String nbt, boolean buyMode, int amount, int price) {
+    public PacketTradingPost (String command, BlockPos pos, ItemStack stackForSale, boolean buyMode, int amount, int price) {
         this.command = command;
         this.pos = pos;
-        this.stackStrSize = stackStrSize;
-        this.nbtStrSize = nbtStrSize;
-        this.stack = stack;
-        this.nbt = nbt;
+        this.stackForSale = stackForSale;
         this.buyMode = buyMode;
         this.amount = amount;
         this.price = price;
@@ -55,40 +47,37 @@ public class PacketTradingPost {
      * Use this constructor to broadcast.
      */
     public PacketTradingPost (String command, BlockPos pos) {
-        this(command, pos, 0, 0, "", "", false, 0, 0);
+        this(command, pos, ItemStack.EMPTY, false, 0, 0);
     }
 
     /**
      * Use this constructor to sync the current mode.
      */
     public PacketTradingPost (String command, BlockPos pos, boolean buyMode) {
-        this(command, pos, 0, 0, "", "", buyMode, 0, 0);
+        this(command, pos, ItemStack.EMPTY, buyMode, 0, 0);
     }
 
     /**
      * Use this constructor to sync the stack for sale.
      */
-    public PacketTradingPost (String command, BlockPos pos, String stack, String nbt) {
-        this(command, pos, stack.length(), nbt.length(), stack, nbt, false, 0, 0);
+    public PacketTradingPost (String command, BlockPos pos, ItemStack stack) {
+        this(command, pos, stack, false, 0, 0);
     }
 
     /**
      * Use this constructor to sync the options
      */
     public PacketTradingPost (String command, BlockPos pos, int amount, int price) {
-        this(command, pos, 0, 0, "", "", false, amount, price);
+        this(command, pos, ItemStack.EMPTY, false, amount, price);
     }
 
     public PacketTradingPost (PacketBuffer buf) {
-        this.command = buf.readString(11).trim();
+        command = buf.readString(11).trim();
         pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        this.stackStrSize = buf.readInt();
-        this.nbtStrSize = buf.readInt();
-        this.stack = buf.readString(stackStrSize);
-        this.nbt = buf.readString(nbtStrSize);
-        this.buyMode = buf.readBoolean();
-        this.amount = buf.readInt();
-        this.price = buf.readInt();
+        stackForSale = buf.readItemStack();
+        buyMode = buf.readBoolean();
+        amount = buf.readInt();
+        price = buf.readInt();
     }
 
     public void toBytes (PacketBuffer buf) {
@@ -96,10 +85,7 @@ public class PacketTradingPost {
         buf.writeInt(pos.getX());
         buf.writeInt(pos.getY());
         buf.writeInt(pos.getZ());
-        buf.writeInt(stackStrSize);
-        buf.writeInt(nbtStrSize);
-        buf.writeString(stack, stackStrSize);
-        buf.writeString(nbt, nbtStrSize);
+        buf.writeItemStack(stackForSale);
         buf.writeBoolean(buyMode);
         buf.writeInt(amount);
         buf.writeInt(price);
@@ -153,13 +139,6 @@ public class PacketTradingPost {
 
                     //Handles syncing the Item Stack for sale.
                     else if (command.equalsIgnoreCase("syncstack")) {
-
-                        ItemStack stackForSale = ItemHelper.getStackFromString(stack);
-
-                        if (!nbt.isEmpty()) {
-                            ItemHelper.attachNBTFromString(stackForSale, nbt);
-                        }
-
                         tePost.setStackForSale(stackForSale);
                     }
 

@@ -71,7 +71,7 @@ public class CUConfig {
             builder.push("BlockScans");
 
             veinScanMaxSize = builder.comment("Vein Scan Max Size", "The Vein Scan is a system used by Blueprints, Scaffolds and Networks.", "It scans for blocks in a chain. The max size is how many chains will occur. Lower values run faster on servers.", "2304 is the maximum count of blocks in a single Player inventory. There is no real reason to set it above, but the option is there").defineInRange("veinScanMaxSize", 2304, 0, 5000);
-            worldEditMaxSize = builder.comment("Brush Max Size", "0 to Disable. The max size of blocks the Brush can place. Lower values run faster on servers.").defineInRange("worldEditMaxSize", 5000, 0, 10000);
+            worldEditMaxSize = builder.comment("Brush Max Size", "0 to Disable. The max size of blocks the Brush can place. Lower values run faster on servers.").defineInRange("worldEditMaxSize", 10000, 0, 20000);
 
             builder.pop();
         }
@@ -126,7 +126,7 @@ public class CUConfig {
         public final ForgeConfigSpec.ConfigValue<Boolean> useSecurity;
         public final ForgeConfigSpec.ConfigValue<Integer> scaffoldMaxHeightTp;
         public final ForgeConfigSpec.ConfigValue<Integer> torchPlacerMaxRange;
-        public final ForgeConfigSpec.ConfigValue<Integer> speedUpgradeCostMultiplier;
+        public final ForgeConfigSpec.ConfigValue<Integer> blueprintFillerMaxScan;
         public final ForgeConfigSpec.ConfigValue<Integer> blenderMaxJuice;
         public final ForgeConfigSpec.ConfigValue<Boolean> tradingPostBroadcasts;
         public final ForgeConfigSpec.ConfigValue<Integer> tradingPostBroadcastDelay;
@@ -138,7 +138,7 @@ public class CUConfig {
             useSecurity = builder.comment("Use Security", "Disable this to allow everyone access to anyone's Blocks.").define("useSecurity", true);
             scaffoldMaxHeightTp = builder.comment("Scaffold Max Height Teleport", "0 to Disable. The max height you can teleport to the top or bottom of a scaffold.").defineInRange("scaffoldMaxHeightTp", 256, 0, 256);
             torchPlacerMaxRange = builder.comment("Torch Placer Max Range", "The max range the Torch Placer can place torches.").defineInRange("torchPlacerMaxRange", 48, 10, 48);
-            speedUpgradeCostMultiplier = builder.comment("Speed Upgrade Cost Multiplier", "This value is multiplied and added to the current cost of the Unit.", "This value increases based on how many Speed Upgrades are in the slot.").defineInRange("speedUpgradeCostMultiplier", 0, 0, Integer.MAX_VALUE);
+            blueprintFillerMaxScan = builder.comment("Blueprint Filler Max Scan Range", "The max amount of Blueprint the Blueprint Filler can scan.").defineInRange("blueprintFillerMaxScan", 100000, 1, 1000000);
             blenderMaxJuice = builder.comment("Blender Max Juice", "The max height amount of juice the Blender can store.").defineInRange("blenderMaxJuice", 1000, 0, 1000000);
             tradingPostBroadcasts = builder.comment("Trading Post Broadcasts", "Disable this to disallow Players broadcasting their Trading Posts").define("tradingPostBroadcasts", true);
             tradingPostBroadcastDelay = builder.comment("Trading Post Broadcast Delay", "The amount of seconds before a Player can broadcasts their Trading Post.").defineInRange("tradingPostBroadcastDelay", 10, 0, 3600);

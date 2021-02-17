@@ -12,6 +12,7 @@ public class InitTileEntityTypes {
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, CUReference.MOD_ID);
 
     public static final RegistryObject<TileEntityType<TileEntityTorchPlacer>> TORCH_PLACER = TILE_ENTITY_TYPES.register("torch_placer", () -> TileEntityType.Builder.create(TileEntityTorchPlacer::new, InitItems.TORCH_PLACER.get()).build(null));
+    public static final RegistryObject<TileEntityType<TileEntityBlueprintFiller>> BLUEPRINT_FILLER = TILE_ENTITY_TYPES.register("blueprint_filler", () -> TileEntityType.Builder.create(TileEntityBlueprintFiller::new, InitItems.BLUEPRINT_FILLER.get()).build(null));
     public static final RegistryObject<TileEntityType<TileEntityMobBeacon>> MOB_BEACON = TILE_ENTITY_TYPES.register("mob_beacon", () -> TileEntityType.Builder.create(TileEntityMobBeacon::new, InitItems.MOB_BEACON.get()).build(null));
     public static final RegistryObject<TileEntityType<TileEntityBookStand>> BOOK_STAND = TILE_ENTITY_TYPES.register("book_stand", () -> TileEntityType.Builder.create(TileEntityBookStand::new, InitItems.BOOK_STAND.get()).build(null));
     public static final RegistryObject<TileEntityType<TileEntityItemStand>> ITEM_STAND = TILE_ENTITY_TYPES.register("item_stand", () -> TileEntityType.Builder.create(TileEntityItemStand::new, InitItems.ITEM_STAND.get()).build(null));

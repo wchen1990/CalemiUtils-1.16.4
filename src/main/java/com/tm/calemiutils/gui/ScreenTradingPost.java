@@ -1,16 +1,15 @@
 package com.tm.calemiutils.gui;
 
-import com.tm.calemiutils.main.CalemiUtils;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.gui.base.ButtonRect;
 import com.tm.calemiutils.gui.base.ContainerScreenBase;
 import com.tm.calemiutils.gui.base.FakeSlot;
 import com.tm.calemiutils.inventory.ContainerTradingPost;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.packet.PacketTradingPost;
 import com.tm.calemiutils.tileentity.TileEntityTradingPost;
 import com.tm.calemiutils.tileentity.base.ICurrencyNetworkBank;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.tm.calemiutils.util.helper.ItemHelper;
 import com.tm.calemiutils.util.helper.ScreenHelper;
 import com.tm.calemiutils.util.helper.StringHelper;
 import net.minecraft.entity.player.PlayerInventory;
@@ -33,7 +32,7 @@ public class ScreenTradingPost extends ContainerScreenBase<ContainerTradingPost>
     private FakeSlot fakeSlot;
 
     public ScreenTradingPost (Container container, PlayerInventory playerInventory, ITextComponent title) {
-        super(container, playerInventory, new StringTextComponent("Wallet"));
+        super(container, playerInventory, new StringTextComponent("Trading Post"));
         tePost = (TileEntityTradingPost) getTileEntity();
     }
 
@@ -143,7 +142,7 @@ public class ScreenTradingPost extends ContainerScreenBase<ContainerTradingPost>
         ItemStack stack = new ItemStack(playerInventory.getItemStack().getItem(), 1);
         if (playerInventory.getItemStack().hasTag()) stack.setTag(playerInventory.getItemStack().getTag());
 
-        CalemiUtils.network.sendToServer(new PacketTradingPost("syncstack", tePost.getPos(), ItemHelper.getStringFromStack(stack), stack.hasTag() ? stack.getTag().toString() : ""));
+        CalemiUtils.network.sendToServer(new PacketTradingPost("syncstack", tePost.getPos(), stack));
         tePost.setStackForSale(stack);
         fakeSlot.setItemStack(stack);
     }

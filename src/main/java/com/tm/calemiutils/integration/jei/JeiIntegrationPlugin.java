@@ -1,5 +1,6 @@
 package com.tm.calemiutils.integration.jei;
 
+import com.tm.calemiutils.gui.ScreenBlueprintFiller;
 import com.tm.calemiutils.main.CUReference;
 import com.tm.calemiutils.gui.ScreenTorchPlacer;
 import mezz.jei.api.IModPlugin;
@@ -17,6 +18,7 @@ public class JeiIntegrationPlugin implements IModPlugin {
 
     @Override
     public void registerGuiHandlers (IGuiHandlerRegistration registration) {
-        registration.addGuiContainerHandler(ScreenTorchPlacer.class, new ScreenJEIHandler());
+        registration.addGuiContainerHandler(ScreenTorchPlacer.class, new UpgradeSlotsJEIHandler());
+        registration.addGuiContainerHandler(ScreenBlueprintFiller.class, new UpgradeSlotsJEIHandler());
     }
 }

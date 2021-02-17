@@ -1,6 +1,7 @@
 package com.tm.calemiutils.event;
 
 import com.tm.calemiutils.tileentity.TileEntityMobBeacon;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.HoglinEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -27,7 +28,7 @@ public class MobBeaconEvent {
             if (event.getEntity() instanceof MonsterEntity || event.getEntity() instanceof HoglinEntity) {
 
                 IWorld world = event.getWorld();
-                MonsterEntity entity = (MonsterEntity) event.getEntity();
+                LivingEntity entity = (LivingEntity) event.getEntity();
                 IChunk chunk = world.getChunk(entity.getPosition());
 
                 //Iterate through all Tile Entities within the entity's chunk.

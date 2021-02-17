@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CIC",
+    "IBI",
+    "CIC"
+  ],
+  "key": {
+    "C": {
+      "item": "calemiutils:gold_chip"
+    },
+    "I": {
+      "item" : "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "calemiutils:brush"
+    }
+  },
+  "result": {
+    "item": "calemiutils:blueprint_filler",
+    "count": 1
+  }
+}
