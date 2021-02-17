@@ -8,6 +8,7 @@ import com.tm.calemiutils.item.base.ItemBase;
 import com.tm.calemiutils.util.Location;
 import com.tm.calemiutils.util.helper.ItemHelper;
 import com.tm.calemiutils.util.helper.LoreHelper;
+import com.tm.calemiutils.util.helper.SoundHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -116,6 +117,7 @@ public class ItemPencil extends ItemBase {
 
                 if (location.isBlockValidForPlacing()) {
                     location.setBlock(BLUEPRINT.getDefaultState().with(BlockBlueprint.COLOR, DyeColor.byId(getColorId(context.getItem()))));
+                    SoundHelper.playBlueprint(world, player, location);
                 }
 
                 return ActionResultType.SUCCESS;

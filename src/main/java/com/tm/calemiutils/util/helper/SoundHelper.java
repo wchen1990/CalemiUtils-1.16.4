@@ -51,7 +51,11 @@ public class SoundHelper {
         world.playSound(player, location.getBlockPos(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, player.getSoundCategory(), 0.9F, 1.1F);
     }
 
-    public static void playSlime (World world, PlayerEntity player, Location location) {
+    public static void playEraser (World world, PlayerEntity player, Location location) {
         world.playSound(player, location.getBlockPos(), SoundEvents.ENTITY_SLIME_ATTACK, player.getSoundCategory(), 0.9F, 1.0F);
+    }
+
+    public static void playBlueprint (World world, PlayerEntity player, Location location) {
+        world.playSound(player, location.getBlockPos(), SoundEvents.BLOCK_STONE_PLACE, player.getSoundCategory(), 0.9F, 2.0F);
     }
 }

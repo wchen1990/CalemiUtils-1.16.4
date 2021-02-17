@@ -36,7 +36,7 @@ public class InitItems {
     public static final RegistryObject<Block> BLUEPRINT = BLOCKS.register("blueprint", BlockBlueprint::new);
     public static final RegistryObject<Item> BLUEPRINT_ITEM = ITEMS.register("blueprint", BlockBlueprintItem::new);
 
-    public static final RegistryObject<Block> IRON_SCAFFOLD = BLOCKS.register("iron_scaffold", BlockScaffold::new);
+    public static final RegistryObject<Block> IRON_SCAFFOLD = BLOCKS.register("iron_scaffold", BlockIronScaffold::new);
     public static final RegistryObject<Item> IRON_SCAFFOLD_ITEM = ITEMS.register("iron_scaffold", () -> new BlockItemBase(IRON_SCAFFOLD.get()));
 
     public static final RegistryObject<Block> ITEM_STAND = BLOCKS.register("item_stand", BlockItemStand::new);

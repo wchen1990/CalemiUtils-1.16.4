@@ -52,7 +52,7 @@ public class ItemEraser extends ItemBase {
             //Checks if the block clicked is a Blueprint.
             if (location.getBlock() instanceof BlockBlueprint) {
 
-                SoundHelper.playSlime(world, player, location);
+                SoundHelper.playEraser(world, player, location);
 
                 //If the Player is not crouching, remove only one Blueprint.
                 if (!player.isCrouching()) {

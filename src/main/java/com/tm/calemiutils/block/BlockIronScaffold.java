@@ -30,9 +30,9 @@ import net.minecraftforge.common.ToolType;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockScaffold extends BlockBase {
+public class BlockIronScaffold extends BlockBase {
 
-    public BlockScaffold () {
+    public BlockIronScaffold() {
         super(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(0.25F).harvestLevel(0).harvestTool(ToolType.PICKAXE).notSolid().variableOpacity());
     }
 
@@ -50,11 +50,6 @@ public class BlockScaffold extends BlockBase {
      */
     @Override
     public ActionResultType onBlockActivated (BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-
-        //Prevents client side.
-        if (world.isRemote) {
-            return ActionResultType.SUCCESS;
-        }
 
         ItemStack heldStack = player.getHeldItemMainhand();
 
@@ -80,12 +75,18 @@ public class BlockScaffold extends BlockBase {
                     if (nextLocation.getBlock() != this) {
 
                         //Checks if the current Location is safe to teleport to.
-                        if (EntityHelper.canTeleportAt((ServerPlayerEntity) player, nextLocation)) {
-                            EntityHelper.teleportPlayer((ServerPlayerEntity) player, nextLocation);
-                            return ActionResultType.SUCCESS;
+
+                        if (!world.isRemote) {
+
+                            if (EntityHelper.canTeleportAt((ServerPlayerEntity) player, nextLocation)) {
+                                EntityHelper.teleportPlayer((ServerPlayerEntity) player, nextLocation, player.rotationYaw, player.rotationPitch);
+                                return ActionResultType.SUCCESS;
+                            }
+
+                            return ActionResultType.FAIL;
                         }
 
-                        return ActionResultType.FAIL;
+                        return ActionResultType.SUCCESS;
                     }
                 }
             }
@@ -110,10 +111,17 @@ public class BlockScaffold extends BlockBase {
                             //If the current Location is not a Scaffold, stop all iterating and check further.
                             if (sqrLocation.getBlock() != this) {
 
-                                if (EntityHelper.canTeleportAt((ServerPlayerEntity) player, sqrLocation)) {
-                                    EntityHelper.teleportPlayer((ServerPlayerEntity) player, sqrLocation);
-                                    return ActionResultType.SUCCESS;
+                                if (!world.isRemote) {
+
+                                    if (EntityHelper.canTeleportAt((ServerPlayerEntity) player, sqrLocation)) {
+                                        EntityHelper.teleportPlayer((ServerPlayerEntity) player, sqrLocation, player.rotationYaw, player.rotationPitch);
+                                        return ActionResultType.SUCCESS;
+                                    }
+
+                                    return ActionResultType.FAIL;
                                 }
+
+                                return ActionResultType.SUCCESS;
                             }
                         }
 
