@@ -31,28 +31,31 @@ public class RenderBookStand extends TileEntityRenderer<TileEntityBookStand> {
             ItemStack bookStack = tileEntity.getInventory().getStackInSlot(0);
             Location location = tileEntity.getLocation();
 
-            Direction dir = location.getForgeBlockState().getBlockState().get(BlockBookStand.FACING);
-            int rotation = 0;
+            if (location.getForgeBlockState().getBlockState().getBlock() instanceof BlockBookStand) {
 
-            switch (dir) {
-                case EAST:
-                    rotation = -90;
-                    break;
-                case SOUTH:
-                    rotation = -180;
-                    break;
-                case WEST:
-                    rotation = -270;
+                Direction dir = location.getForgeBlockState().getBlockState().get(BlockBookStand.FACING);
+                int rotation = 0;
+
+                switch (dir) {
+                    case EAST:
+                        rotation = -90;
+                        break;
+                    case SOUTH:
+                        rotation = -180;
+                        break;
+                    case WEST:
+                        rotation = -270;
+                }
+
+                matrixStack.push();
+                matrixStack.translate(0.5D, 0.505D, 0.5D);
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(rotation));
+                matrixStack.scale(2F, 2F, 2F);
+
+                renderItem(bookStack, partialTicks, matrixStack, buffer, combinedLight);
+
+                matrixStack.pop();
             }
-
-            matrixStack.push();
-            matrixStack.translate(0.5D, 0.505D, 0.5D);
-            matrixStack.rotate(Vector3f.YP.rotationDegrees(rotation));
-            matrixStack.scale(2F, 2F, 2F);
-
-            renderItem(bookStack, partialTicks, matrixStack, buffer, combinedLight);
-
-            matrixStack.pop();
         }
     }
 

@@ -90,6 +90,7 @@ public class CalemiUtils {
         network.registerMessage(++id, PacketItemStand.class, PacketItemStand::toBytes, PacketItemStand::new, PacketItemStand::handle);
         network.registerMessage(++id, PacketWallet.class, PacketWallet::toBytes, PacketWallet::new, PacketWallet::handle);
         network.registerMessage(++id, PacketOpenWallet.class, PacketOpenWallet::toBytes, PacketOpenWallet::new, PacketOpenWallet::handle);
+        network.registerMessage(++id, PacketToggleTorchBelt.class, PacketToggleTorchBelt::toBytes, PacketToggleTorchBelt::new, PacketToggleTorchBelt::handle);
         network.registerMessage(++id, PacketBank.class, PacketBank::toBytes, PacketBank::new, PacketBank::handle);
         network.registerMessage(++id, PacketTradingPost.class, PacketTradingPost::toBytes, PacketTradingPost::new, PacketTradingPost::handle);
         network.registerMessage(++id, PacketBlueprintFiller.class, PacketBlueprintFiller::toBytes, PacketBlueprintFiller::new, PacketBlueprintFiller::handle);
@@ -111,6 +112,7 @@ public class CalemiUtils {
         MinecraftForge.EVENT_BUS.register(new TradingPostOverlayEvent());
         MinecraftForge.EVENT_BUS.register(new WalletOverlayEvent());
         MinecraftForge.EVENT_BUS.register(new WalletKeyEvent());
+        MinecraftForge.EVENT_BUS.register(new TorchBeltKeyEvent());
         MinecraftForge.EVENT_BUS.register(new CoinPickupSoundEvent());
 
         RenderTypeLookup.setRenderLayer(InitItems.BLUEPRINT.get(), RenderType.getCutout());

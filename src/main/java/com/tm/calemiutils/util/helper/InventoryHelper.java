@@ -4,9 +4,12 @@ import com.tm.calemiutils.tileentity.base.CUItemHandler;
 import com.tm.calemiutils.util.Location;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class InventoryHelper {
@@ -223,6 +226,22 @@ public class InventoryHelper {
         }
 
         return count;
+    }
+
+    public static List<ItemStack> findItems(Object obj, Item item) {
+
+        List<ItemStack> stackList = new ArrayList<>();
+
+        for (int slotId = 0; slotId < getSlotAmount(obj); slotId++) {
+
+            ItemStack stackInSlot = getStackInSlot(obj, slotId);
+
+            if (stackInSlot.getItem() == item) {
+                stackList.add(stackInSlot);
+            }
+        }
+
+        return stackList;
     }
 
     public static void consumeStack(Object obj, int amount, boolean useNBT, ItemStack stack) {

@@ -4,9 +4,7 @@ run/
 server/
 out/
 .gradle/
-gradle/
 classes/
-gradlew
 build/
 gradle-app.setting
 
@@ -25,8 +23,6 @@ eclipse/
 .metadata
 bin/
 tmp/
-*.bat
-*.properties
 *.tmp
 *.bak
 *.swp

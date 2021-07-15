@@ -4,6 +4,7 @@ import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.integration.curios.CuriosIntegration;
 import com.tm.calemiutils.item.base.ItemBase;
 import com.tm.calemiutils.util.Location;
+import com.tm.calemiutils.util.UnitChatMessage;
 import com.tm.calemiutils.util.helper.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,16 +27,24 @@ import java.util.List;
 
 public class ItemTorchBelt extends ItemBase {
 
-    public ItemTorchBelt () {
+    public ItemTorchBelt() {
         super(new Item.Properties().group(CalemiUtils.TAB).maxStackSize(1));
     }
 
+    public static boolean isActive(ItemStack stack) {
+        return ItemHelper.getNBT(stack).getBoolean("on");
+    }
+
     @Override
-    public void addInformation (ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         LoreHelper.addInformationLore(tooltip, "Place this anywhere in your inventory. Automatically uses and places torches in dark areas.", true);
         LoreHelper.addControlsLore(tooltip, "Toggle ON/OFF", LoreHelper.Type.USE, true);
         LoreHelper.addBlankLine(tooltip);
-        tooltip.add(new StringTextComponent("Status: " + TextFormatting.AQUA + (ItemHelper.getNBT(stack).getBoolean("on") ? "ON" : "OFF")));
+        tooltip.add(new StringTextComponent("Status: " + TextFormatting.AQUA + (isActive(stack) ? "ON" : "OFF")));
+    }
+
+    public static UnitChatMessage getMessage (PlayerEntity player) {
+        return new UnitChatMessage("Torch Belt", player);
     }
 
     /**
@@ -55,37 +64,42 @@ public class ItemTorchBelt extends ItemBase {
      * Handles toggle the state.
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick (World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
-        ItemStack stack = playerIn.getHeldItem(handIn);
+        ItemStack stack = player.getHeldItem(hand);
 
-        ItemHelper.getNBT(stack).putBoolean("on", !ItemHelper.getNBT(stack).getBoolean("on"));
-        SoundHelper.playClick(worldIn, playerIn);
+        setActive(stack, world, player, !isActive(stack));
 
         return new ActionResult<>(ActionResultType.SUCCESS, stack);
+    }
+
+    public static void setActive(ItemStack stack, World world, PlayerEntity player, boolean state) {
+
+        ItemHelper.getNBT(stack).putBoolean("on", state);
+        SoundHelper.playClick(world, player);
     }
 
     /**
      * Handles calling tick when in inventory.
      */
     @Override
-    public void inventoryTick (ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        tick(stack, worldIn, entityIn);
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+        tick(stack, world, entity);
     }
 
     /**
      * Handles placing Torches.
      */
-    public static void tick (ItemStack stack, World worldIn, Entity entityIn) {
+    public static void tick(ItemStack stack, World world, Entity entity) {
 
         //Checks if the entity is a Player
-        if (entityIn instanceof PlayerEntity) {
+        if (entity instanceof PlayerEntity) {
 
             //Checks if the state is on.
-            if (ItemHelper.getNBT(stack).getBoolean("on")) {
+            if (isActive(stack)) {
 
-                PlayerEntity player = (PlayerEntity) entityIn;
-                Location location = new Location(worldIn, (int) Math.floor(player.getPosition().getX()), (int) Math.floor(player.getPosition().getY()), (int) Math.floor(player.getPosition().getZ()));
+                PlayerEntity player = (PlayerEntity) entity;
+                Location location = new Location(world, (int) Math.floor(player.getPosition().getX()), (int) Math.floor(player.getPosition().getY()), (int) Math.floor(player.getPosition().getZ()));
 
                 //Checks if the Player has a Torch. Bypassed by creative mode.
                 if (player.inventory.hasItemStack(new ItemStack(Blocks.TORCH)) || player.abilities.isCreativeMode) {
@@ -102,7 +116,7 @@ public class ItemTorchBelt extends ItemBase {
     }
 
     @Override
-    public boolean hasEffect (ItemStack stack) {
-        return ItemHelper.getNBT(stack).getBoolean("on");
+    public boolean hasEffect(ItemStack stack) {
+        return isActive(stack);
     }
 }
