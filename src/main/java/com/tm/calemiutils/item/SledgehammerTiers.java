@@ -1,5 +1,6 @@
 package com.tm.calemiutils.item;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -16,7 +17,7 @@ public enum SledgehammerTiers implements IItemTier {
     GOLD      (11 * 10, 12F, 6F, 0, 22, 15, 1.3F, () -> {return Ingredient.fromItems(Items.GOLD_INGOT);}),
     DIAMOND   (520 * 10, 8F, 8F, 3, 10, 20, 1.3F, () -> {return Ingredient.fromItems(Items.DIAMOND);}),
     NETHERITE (677 * 10, 9F, 9F, 4, 15, 15, 1.3F, () -> {return Ingredient.fromItems(Items.NETHERITE_INGOT);}),
-    STARLIGHT (10000000, 20F, 15F, 5, 25, 10, 1.3F, () -> null);
+    STARLIGHT (10000000, 20F, 15F, 5, 25, 10, 1.3F, () -> {return Ingredient.fromItems(Blocks.AIR);});
 
     public final int durability;
     public final float efficiency;
