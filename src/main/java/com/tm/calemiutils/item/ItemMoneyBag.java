@@ -1,6 +1,7 @@
 package com.tm.calemiutils.item;
 
 import com.github.talrey.createdeco.Registration;
+import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.base.ItemBase;
@@ -50,12 +51,12 @@ public class ItemMoneyBag extends ItemBase {
 
         if (isRich) {
             SoundHelper.playMoneyBagRichOpen(world, player);
-            giveCoins(world, player, 125, 350);
+            giveCoins(world, player, CUConfig.economy.richMoneyBagMin.get(), CUConfig.economy.richMoneyBagMax.get());
         }
 
         else {
             SoundHelper.playMoneyBagCheapOpen(world, player);
-            giveCoins(world, player, 25, 150);
+            giveCoins(world, player, CUConfig.economy.cheapMoneyBagMin.get(), CUConfig.economy.cheapMoneyBagMax.get());
         }
 
         return new ActionResult<>(ActionResultType.FAIL, stack);
@@ -67,24 +68,31 @@ public class ItemMoneyBag extends ItemBase {
 
             int amount = minAmount + random.nextInt(maxAmount - minAmount);
 
-            int hundreds = (int)Math.floor((float)amount / 100);
-            amount -= (hundreds * 100);
-            int fifties = (int)Math.floor((float)amount / 50);
-            amount -= (fifties * 50);
-            int twenties = (int)Math.floor((float)amount / 20);
-            amount -= (twenties * 20);
-            int tens = (int)Math.floor((float)amount / 10);
-            amount -= (tens * 10);
-            int fives = (int)Math.floor((float)amount / 5);
-            amount -= (fives * 5);
-            int ones = amount;
+            int netheriteValue = CUConfig.coinValues.netherite.get();
+            int goldValue = CUConfig.coinValues.gold.get();
+            int brassValue = CUConfig.coinValues.brass.get();
+            int ironValue = CUConfig.coinValues.iron.get();
+            int copperValue = CUConfig.coinValues.copper.get();
+            int zincValue = CUConfig.coinValues.zinc.get();
 
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Netherite").get(), hundreds));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Gold").get(), fifties));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Brass").get(), twenties));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Iron").get(), tens));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Copper").get(), fives));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Zinc").get(), ones));
+            int netherite = (int)Math.floor((float)amount / netheriteValue);
+            amount -= (netherite * netheriteValue);
+            int gold = (int)Math.floor((float)amount / goldValue);
+            amount -= (gold * goldValue);
+            int brass = (int)Math.floor((float)amount / brassValue);
+            amount -= (brass * brassValue);
+            int iron = (int)Math.floor((float)amount / ironValue);
+            amount -= (iron * ironValue);
+            int copper = (int)Math.floor((float)amount / copperValue);
+            amount -= (copper * copperValue);
+            int zinc = (int)Math.floor((float)amount / zincValue);
+
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Netherite").get(), netherite));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Gold").get(), gold));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Brass").get(), brass));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Iron").get(), iron));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Copper").get(), copper));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Zinc").get(), zinc));
         }
     }
 }

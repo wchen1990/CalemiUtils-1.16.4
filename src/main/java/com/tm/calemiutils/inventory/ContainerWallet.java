@@ -1,6 +1,7 @@
 package com.tm.calemiutils.inventory;
 
 import com.github.talrey.createdeco.Registration;
+import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.init.InitContainerTypes;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.inventory.base.ContainerBase;
@@ -81,31 +82,38 @@ public class ContainerWallet extends ContainerBase {
             Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
             || Registration.COINSTACK_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
         ) {
+            int netheriteValue = CUConfig.coinValues.netherite.get();
+            int goldValue = CUConfig.coinValues.gold.get();
+            int brassValue = CUConfig.coinValues.brass.get();
+            int ironValue = CUConfig.coinValues.iron.get();
+            int copperValue = CUConfig.coinValues.copper.get();
+            int zincValue = CUConfig.coinValues.zinc.get();
+
             int value = 0;
             if (stackInInv.getItem() == Registration.COIN_ITEM.get("Zinc").get())
-                value = 1;
+                value = zincValue;
             else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Copper").get())
-                value = 5;
+                value = copperValue;
             else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Iron").get())
-                value = 10;
+                value = ironValue;
             else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Brass").get())
-                value = 20;
+                value = brassValue;
             else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Gold").get())
-                value = 50;
+                value = goldValue;
             else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Netherite").get())
-                value = 100;
+                value = netheriteValue;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Zinc").get())
-                value = 4;
+                value = zincValue * 4;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Copper").get())
-                value = 20;
+                value = copperValue * 4;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Iron").get())
-                value = 40;
+                value = ironValue * 4;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Brass").get())
-                value = 80;
+                value = brassValue * 4;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Gold").get())
-                value = 200;
+                value = goldValue * 4;
             else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Netherite").get())
-                value = 400;
+                value = netheriteValue * 4;
 
             int amountToAdd = 0;
             int stacksToRemove = 0;

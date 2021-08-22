@@ -78,12 +78,19 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
 
             ItemWallet walletItem = (ItemWallet) walletStack.getItem();
 
-            int price = 1;
-            if (id == 1) price = 5;
-            else if (id == 2) price = 10;
-            else if (id == 3) price = 20;
-            else if (id == 4) price = 50;
-            else if (id == 5) price = 100;
+            int netheriteValue = CUConfig.coinValues.netherite.get();
+            int goldValue = CUConfig.coinValues.gold.get();
+            int brassValue = CUConfig.coinValues.brass.get();
+            int ironValue = CUConfig.coinValues.iron.get();
+            int copperValue = CUConfig.coinValues.copper.get();
+            int zincValue = CUConfig.coinValues.zinc.get();
+
+            int price = zincValue;
+            if (id == 1) price = copperValue;
+            else if (id == 2) price = ironValue;
+            else if (id == 3) price = brassValue;
+            else if (id == 4) price = goldValue;
+            else if (id == 5) price = netheriteValue;
 
             int multiplier = MathHelper.getShiftCtrlInt(1, 16, 64, 9 * 64);
             price *= multiplier;
@@ -106,12 +113,20 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
         addInfoHoveringText(matrixStack, mouseX, mouseY, "Button Click Info", "Shift: 16, Ctrl: 64, Shift + Ctrl: 64 * 9");
 
         // Info boxes for coins
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 24, 16, 16, "Zinc Coin", "1 " + CUConfig.economy.currencyName.get());
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 42, 16, 16, "Copper Coin", "5 " + CUConfig.economy.currencyName.get());
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 60, 16, 16, "Iron Coin", "10 " + CUConfig.economy.currencyName.get());
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 24, 16, 16, "Brass Coin", "20 " + CUConfig.economy.currencyName.get());
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 42, 16, 16, "Gold Coin", "50 " + CUConfig.economy.currencyName.get());
-        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 60, 16, 16, "Netherite Coin", "100 " + CUConfig.economy.currencyName.get());
+        int netheriteValue = CUConfig.coinValues.netherite.get();
+        int goldValue = CUConfig.coinValues.gold.get();
+        int brassValue = CUConfig.coinValues.brass.get();
+        int ironValue = CUConfig.coinValues.iron.get();
+        int copperValue = CUConfig.coinValues.copper.get();
+        int zincValue = CUConfig.coinValues.zinc.get();
+        String currencyName = CUConfig.economy.currencyName.get();
+
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 24, 16, 16, "Zinc Coin", zincValue + " " + currencyName);
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 42, 16, 16, "Copper Coin", copperValue + " " + currencyName);
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 60, 16, 16, "Iron Coin", ironValue + " " + currencyName);
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 24, 16, 16, "Brass Coin", brassValue + " " + currencyName);
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 42, 16, 16, "Gold Coin", goldValue + " " + currencyName);
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 60, 16, 16, "Netherite Coin", netheriteValue + " " + currencyName);
     }
 
     @Override

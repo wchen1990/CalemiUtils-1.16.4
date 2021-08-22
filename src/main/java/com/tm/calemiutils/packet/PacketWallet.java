@@ -1,6 +1,7 @@
 package com.tm.calemiutils.packet;
 
 import com.github.talrey.createdeco.Registration;
+import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.ItemCoin;
 import com.tm.calemiutils.item.ItemWallet;
@@ -56,32 +57,39 @@ public class PacketWallet {
 
                     ItemWallet wallet = (ItemWallet) walletStack.getItem();
 
+                    int netheriteValue = CUConfig.coinValues.netherite.get();
+                    int goldValue = CUConfig.coinValues.gold.get();
+                    int brassValue = CUConfig.coinValues.brass.get();
+                    int ironValue = CUConfig.coinValues.iron.get();
+                    int copperValue = CUConfig.coinValues.copper.get();
+                    int zincValue = CUConfig.coinValues.zinc.get();
+
                     Item item = Registration.COIN_ITEM.get("Zinc").get();
-                    int price = 1;
+                    int price = zincValue;
 
                     if (buttonId == 1) {
                         item = Registration.COIN_ITEM.get("Copper").get();
-                        price = 5;
+                        price = copperValue;
                     }
 
                     else if (buttonId == 2) {
                         item = Registration.COIN_ITEM.get("Iron").get();
-                        price = 10;
+                        price = ironValue;
                     }
 
                     else if (buttonId == 3) {
                         item = Registration.COIN_ITEM.get("Brass").get();
-                        price = 20;
+                        price = brassValue;
                     }
 
                     else if (buttonId == 4) {
                         item = Registration.COIN_ITEM.get("Gold").get();
-                        price = 50;
+                        price = goldValue;
                     }
 
                     else if (buttonId == 5) {
                         item = Registration.COIN_ITEM.get("Netherite").get();
-                        price = 100;
+                        price = netheriteValue;
                     }
 
                     price *= multiplier;

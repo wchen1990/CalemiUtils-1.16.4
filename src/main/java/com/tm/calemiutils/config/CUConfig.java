@@ -16,6 +16,7 @@ public class CUConfig {
     public static final CategoryWorldGen worldGen = new CategoryWorldGen(BUILDER);
     public static final CategoryBlockScans blockScans = new CategoryBlockScans(BUILDER);
     public static final CategoryEconomy economy = new CategoryEconomy(BUILDER);
+    public static final CategoryCoinValues coinValues = new CategoryCoinValues(BUILDER);
     public static final CategoryWallet wallet = new CategoryWallet(BUILDER);
     public static final CategoryMisc misc = new CategoryMisc(BUILDER);
 
@@ -94,10 +95,33 @@ public class CUConfig {
             currencyName = builder.comment("Currency Name").define("currencyName", "RC");
             bankCurrencyCapacity = builder.comment("Bank Currency Capacity", "The max amount of currency the Bank can store.").defineInRange("bankCurrencyCapacity", 1000000, 0, 99999999);
             postCurrencyCapacity = builder.comment("Trading Post Currency Capacity", "The max amount of currency the Trading Post can store.").defineInRange("postCurrencyCapacity", 1000000, 0, 99999999);
-            cheapMoneyBagMin = builder.comment("Cheap Money Bag Minimum Coins Amount", "The minimum of the random amount of currency the Cheap Money Bag gives.").defineInRange("cheapMoneyBagMin", 10, 0, 10000);
-            cheapMoneyBagMax = builder.comment("Cheap Money Bag Maximum Coins Amount", "The maximum of the random amount of currency the Cheap Money Bag gives.").defineInRange("cheapMoneyBagMax", 100, 0, 10000);
-            richMoneyBagMin = builder.comment("Rich Money Bag Minimum Coins Amount", "The minimum of the random amount of currency the Rich Money Bag gives.").defineInRange("richMoneyBagMin", 75, 0, 10000);
-            richMoneyBagMax = builder.comment("Rich Money Bag Maximum Coins Amount", "The maximum of the random amount of currency the Rich Money Bag gives.").defineInRange("richMoneyBagMax", 300, 0, 10000);
+            cheapMoneyBagMin = builder.comment("Cheap Money Bag Minimum Coins Amount", "The minimum of the random amount of currency the Cheap Money Bag gives.").defineInRange("cheapMoneyBagMin", 25, 0, 10000);
+            cheapMoneyBagMax = builder.comment("Cheap Money Bag Maximum Coins Amount", "The maximum of the random amount of currency the Cheap Money Bag gives.").defineInRange("cheapMoneyBagMax", 150, 0, 10000);
+            richMoneyBagMin = builder.comment("Rich Money Bag Minimum Coins Amount", "The minimum of the random amount of currency the Rich Money Bag gives.").defineInRange("richMoneyBagMin", 125, 0, 10000);
+            richMoneyBagMax = builder.comment("Rich Money Bag Maximum Coins Amount", "The maximum of the random amount of currency the Rich Money Bag gives.").defineInRange("richMoneyBagMax", 350, 0, 10000);
+
+            builder.pop();
+        }
+    }
+
+    public static class CategoryCoinValues {
+        public final ForgeConfigSpec.ConfigValue<Integer> zinc;
+        public final ForgeConfigSpec.ConfigValue<Integer> copper;
+        public final ForgeConfigSpec.ConfigValue<Integer> iron;
+        public final ForgeConfigSpec.ConfigValue<Integer> brass;
+        public final ForgeConfigSpec.ConfigValue<Integer> gold;
+        public final ForgeConfigSpec.ConfigValue<Integer> netherite;
+
+        public CategoryCoinValues(ForgeConfigSpec.Builder builder) {
+
+            builder.push("CoinValues");
+
+            zinc = builder.comment("Zinc Coin", "The amount of currency the coin is worth.").defineInRange("zinc", 1, 1, 99999999);
+            copper = builder.comment("Copper Coin", "The amount of currency the coin is worth.").defineInRange("copper", 5, 1, 99999999);
+            iron = builder.comment("Iron Coin", "The amount of currency the coin is worth.").defineInRange("iron", 10, 1, 99999999);
+            brass = builder.comment("Brass Coin", "The amount of currency the coin is worth.").defineInRange("brass", 20, 1, 99999999);
+            gold = builder.comment("Gold Coin", "The amount of currency the coin is worth.").defineInRange("gold", 50, 1, 99999999);
+            netherite = builder.comment("Netherite Coin", "The amount of currency the coin is worth.").defineInRange("netherite", 500, 1, 99999999);
 
             builder.pop();
         }
