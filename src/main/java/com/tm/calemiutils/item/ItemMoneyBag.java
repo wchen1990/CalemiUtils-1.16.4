@@ -1,5 +1,6 @@
 package com.tm.calemiutils.item;
 
+import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.base.ItemBase;
@@ -49,12 +50,12 @@ public class ItemMoneyBag extends ItemBase {
 
         if (isRich) {
             SoundHelper.playMoneyBagRichOpen(world, player);
-            giveCoins(world, player, 75, 300);
+            giveCoins(world, player, 125, 350);
         }
 
         else {
             SoundHelper.playMoneyBagCheapOpen(world, player);
-            giveCoins(world, player, 10, 100);
+            giveCoins(world, player, 25, 150);
         }
 
         return new ActionResult<>(ActionResultType.FAIL, stack);
@@ -66,18 +67,24 @@ public class ItemMoneyBag extends ItemBase {
 
             int amount = minAmount + random.nextInt(maxAmount - minAmount);
 
-            int dollars = (int)Math.floor((float)amount / 100);
-            amount -= (dollars * 100);
-            int quarters = (int)Math.floor((float)amount / 25);
-            amount -= (quarters * 25);
-            int nickels = (int)Math.floor((float)amount / 5);
-            amount -= (nickels * 5);
-            int pennies = amount;
+            int hundreds = (int)Math.floor((float)amount / 100);
+            amount -= (hundreds * 100);
+            int fifties = (int)Math.floor((float)amount / 50);
+            amount -= (fifties * 50);
+            int twenties = (int)Math.floor((float)amount / 20);
+            amount -= (twenties * 20);
+            int tens = (int)Math.floor((float)amount / 10);
+            amount -= (tens * 10);
+            int fives = (int)Math.floor((float)amount / 5);
+            amount -= (fives * 5);
+            int ones = amount;
 
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(InitItems.COIN_DOLLAR.get(), dollars));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(InitItems.COIN_QUARTER.get(), quarters));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(InitItems.COIN_NICKEL.get(), nickels));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(InitItems.COIN_PENNY.get(), pennies));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Netherite").get(), hundreds));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Gold").get(), fifties));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Brass").get(), twenties));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Iron").get(), tens));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Copper").get(), fives));
+            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Zinc").get(), ones));
         }
     }
 }

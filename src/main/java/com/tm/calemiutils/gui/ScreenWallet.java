@@ -1,5 +1,6 @@
 package com.tm.calemiutils.gui;
 
+import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.gui.base.ButtonRect;
@@ -49,12 +50,19 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
     protected void init () {
         super.init();
 
-        for (int index = 0; index < 4; index++) {
+        for (int index = 0; index < 6; index++) {
 
             int id = index;
+            int xOffset = 150 + ((index > 2) ? 38 : 0);
+            int yOffset = ((index % 3) * 18);
 
-            addButton(new ButtonRect(getScreenX() + 146, getScreenY() + 15 + (index * 18), 16, "+", (btn) -> addMoney(id)));
+            addButton(new ButtonRect(getScreenX() + xOffset, getScreenY() + 24 + yOffset, 16, "+", (btn) -> addMoney(id)));
         }
+    }
+
+    @Override
+    public int getGuiSizeX () {
+        return 210;
     }
 
     /**
@@ -70,10 +78,19 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
 
             ItemWallet walletItem = (ItemWallet) walletStack.getItem();
 
+            /*
             int price = ((ItemCoin) InitItems.COIN_PENNY.get()).value;
             if (id == 1) price = ((ItemCoin) InitItems.COIN_NICKEL.get()).value;
             else if (id == 2) price = ((ItemCoin) InitItems.COIN_QUARTER.get()).value;
             else if (id == 3) price = ((ItemCoin) InitItems.COIN_DOLLAR.get()).value;
+            */
+
+            int price = 1;
+            if (id == 1) price = 5;
+            else if (id == 2) price = 10;
+            else if (id == 3) price = 20;
+            else if (id == 4) price = 50;
+            else if (id == 5) price = 100;
 
             int multiplier = MathHelper.getShiftCtrlInt(1, 16, 64, 9 * 64);
             price *= multiplier;
@@ -98,11 +115,18 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
 
     @Override
     public void drawGuiBackground(MatrixStack matrixStack, int mouseY, int mouseX) {
-
+/*
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_PENNY.get()), getScreenX() + 127, getScreenY() + 15);
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_NICKEL.get()), getScreenX() + 127, getScreenY() + 33);
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_QUARTER.get()), getScreenX() + 127, getScreenY() + 51);
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_DOLLAR.get()), getScreenX() + 127, getScreenY() + 69);
+*/
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Zinc").get()), getScreenX() + 131, getScreenY() + 24);
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Copper").get()), getScreenX() + 131, getScreenY() + 42);
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Iron").get()), getScreenX() + 131, getScreenY() + 60);
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Brass").get()), getScreenX() + 169, getScreenY() + 24);
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Gold").get()), getScreenX() + 169, getScreenY() + 42);
+        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Netherite").get()), getScreenX() + 169, getScreenY() + 60);
 
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glColor4f(1, 1, 1, 1);
@@ -110,8 +134,8 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
         ItemStack stack = getCurrentWalletStack();
 
         if (!stack.isEmpty()) {
-            ScreenHelper.drawCenteredString(matrixStack, StringHelper.printCommas(ItemHelper.getNBT(stack).getInt("balance")), getScreenX() + getGuiSizeX() / 2 - 16, getScreenY() + 42, 0, TEXT_COLOR_GRAY);
-            ScreenHelper.drawCenteredString(matrixStack, CUConfig.economy.currencyName.get(), getScreenX() + getGuiSizeX() / 2 - 16, getScreenY() + 51, 0, TEXT_COLOR_GRAY);
+            ScreenHelper.drawCenteredString(matrixStack, StringHelper.printCommas(ItemHelper.getNBT(stack).getInt("balance")), getScreenX() + getGuiSizeX() / 2 - 25, getScreenY() + 42, 0, TEXT_COLOR_GRAY);
+            ScreenHelper.drawCenteredString(matrixStack, CUConfig.economy.currencyName.get(), getScreenX() + getGuiSizeX() / 2 - 25, getScreenY() + 51, 0, TEXT_COLOR_GRAY);
         }
     }
 

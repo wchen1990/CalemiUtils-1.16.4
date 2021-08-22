@@ -51,7 +51,7 @@ public class CUConfig {
 
             builder.push("WorldGen");
 
-            raritaniumOreGen = builder.comment("Raritanium Ore Gen").define("raritaniumOreGen", true);
+            raritaniumOreGen = builder.comment("Raritanium Ore Gen").define("raritaniumOreGen", false);
             raritaniumVeinsPerChunk = builder.comment("Raritanium Veins Per Chunk").define("raritaniumOreVeinsPerChunk", 4);
             raritaniumVeinSize = builder.comment("Raritanium Vein Size").define("raritaniumVeinSize", 8);
             raritaniumOreGenMinY = builder.comment("Raritanium Ore Min Y").define("raritaniumOreGenMinY", 0);
@@ -115,7 +115,7 @@ public class CUConfig {
 
             walletCurrencyCapacity = builder.comment("Wallet Currency Capacity", "The max amount of currency the Wallet can store.").defineInRange("walletCurrencyCapacity", 1000000, 0, 99999999);
             walletOverlay = builder.comment("Render Wallet Currency Overlay", "Enable this render an overlay on your game screen showing your Wallet stats.").define("walletOverlay", true);
-            walletOverlayPosition = builder.comment("Wallet Currency Overlay Position", "The position of the screen of the Wallet overlay", "The valid values are {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}").define("walletOverlayPosition", WalletOverlayPosition.TOP_LEFT.toString());
+            walletOverlayPosition = builder.comment("Wallet Currency Overlay Position", "The position of the screen of the Wallet overlay", "The valid values are {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}").define("walletOverlayPosition", WalletOverlayPosition.BOTTOM_RIGHT.toString());
 
             builder.pop();
         }

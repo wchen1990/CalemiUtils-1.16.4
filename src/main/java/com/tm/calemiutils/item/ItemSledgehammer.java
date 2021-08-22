@@ -172,7 +172,8 @@ public class ItemSledgehammer extends PickaxeItem {
      */
     private void excavateBlocks (World worldIn, ItemStack heldStack, PlayerEntity player, Location location, Direction face) {
 
-        int radius = EnchantmentHelper.getEnchantmentLevel(InitEnchantments.CRUSHING.get(), heldStack) + 1;
+        //int radius = EnchantmentHelper.getEnchantmentLevel(InitEnchantments.CRUSHING.get(), heldStack) + 1;
+        int radius = 3;
 
         ArrayList<Location> locations = WorldEditHelper.selectFlatCubeFromFace(location, face, radius);
 

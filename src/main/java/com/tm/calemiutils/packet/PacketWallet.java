@@ -1,5 +1,6 @@
 package com.tm.calemiutils.packet;
 
+import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.ItemCoin;
 import com.tm.calemiutils.item.ItemWallet;
@@ -55,22 +56,32 @@ public class PacketWallet {
 
                     ItemWallet wallet = (ItemWallet) walletStack.getItem();
 
-                    Item item = InitItems.COIN_PENNY.get();
-                    int price = ((ItemCoin) InitItems.COIN_PENNY.get()).value;
+                    Item item = Registration.COIN_ITEM.get("Zinc").get();
+                    int price = 1;
 
                     if (buttonId == 1) {
-                        item = InitItems.COIN_NICKEL.get();
-                        price = ((ItemCoin) InitItems.COIN_NICKEL.get()).value;
+                        item = Registration.COIN_ITEM.get("Copper").get();
+                        price = 5;
                     }
 
                     else if (buttonId == 2) {
-                        item = InitItems.COIN_QUARTER.get();
-                        price = ((ItemCoin) InitItems.COIN_QUARTER.get()).value;
+                        item = Registration.COIN_ITEM.get("Iron").get();
+                        price = 10;
                     }
 
                     else if (buttonId == 3) {
-                        item = InitItems.COIN_DOLLAR.get();
-                        price = ((ItemCoin) InitItems.COIN_DOLLAR.get()).value;
+                        item = Registration.COIN_ITEM.get("Brass").get();
+                        price = 20;
+                    }
+
+                    else if (buttonId == 4) {
+                        item = Registration.COIN_ITEM.get("Gold").get();
+                        price = 50;
+                    }
+
+                    else if (buttonId == 5) {
+                        item = Registration.COIN_ITEM.get("Netherite").get();
+                        price = 100;
                     }
 
                     price *= multiplier;

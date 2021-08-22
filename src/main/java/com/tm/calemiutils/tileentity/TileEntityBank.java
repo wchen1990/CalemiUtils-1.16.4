@@ -1,5 +1,6 @@
 package com.tm.calemiutils.tileentity;
 
+import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.gui.ScreenBank;
 import com.tm.calemiutils.init.InitTileEntityTypes;
@@ -15,6 +16,7 @@ import com.tm.calemiutils.util.VeinScan;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -83,22 +85,37 @@ public class TileEntityBank extends TileEntityInventoryBase implements ICurrency
 
         if (!world.isRemote) {
 
-            if (getInventory().getStackInSlot(0).getItem() instanceof ItemCoin) {
+            Item bankSlotCoinItem = getInventory().getStackInSlot(0).getItem();
+            if (Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)) {
 
-                int amountToAdd = ((ItemCoin) getInventory().getStackInSlot(0).getItem()).value;
+                int value = 0;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Zinc").get())
+                    value = 1;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Copper").get())
+                    value = 5;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Iron").get())
+                    value = 10;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Brass").get())
+                    value = 20;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Gold").get())
+                    value = 50;
+                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Netherite").get())
+                    value = 100;
+
+                int amountToAdd = value;
                 int stackSize = 0;
 
                 for (int i = 0; i < getInventory().getStackInSlot(0).getCount(); i++) {
 
                     if (canDeposit(amountToAdd)) {
                         stackSize++;
-                        amountToAdd += ((ItemCoin) getInventory().getStackInSlot(0).getItem()).value;
+                        amountToAdd += value;
                     }
                 }
 
                 if (stackSize != 0) {
 
-                    depositCurrency(stackSize * ((ItemCoin) getInventory().getStackInSlot(0).getItem()).value);
+                    depositCurrency(stackSize * value);
                     getInventory().decrStackSize(0, stackSize);
                 }
             }

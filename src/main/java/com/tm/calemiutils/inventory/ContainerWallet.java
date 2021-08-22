@@ -1,12 +1,15 @@
 package com.tm.calemiutils.inventory;
 
+import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.init.InitContainerTypes;
 import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.inventory.base.ContainerBase;
 import com.tm.calemiutils.inventory.base.SlotIInventoryFilter;
 import com.tm.calemiutils.item.ItemCoin;
+import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.util.helper.CurrencyHelper;
 import com.tm.calemiutils.util.helper.ItemHelper;
+import com.tm.calemiutils.util.helper.LogHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -24,7 +27,7 @@ public class ContainerWallet extends ContainerBase {
     private final IInventory stackInv;
 
     public ContainerWallet (final int windowID, final PlayerInventory playerInventory, IInventory stackInv, int selectedSlot) {
-        super(InitContainerTypes.WALLET.get(), windowID, playerInventory, null, 8, 94);
+        super(InitContainerTypes.WALLET.get(), windowID, playerInventory, null, 25, 94);
 
         isItemContainer = true;
         size = 1;
@@ -33,7 +36,14 @@ public class ContainerWallet extends ContainerBase {
         this.selectedSlot = selectedSlot;
 
         //New Inventory
-        addSlot(new SlotIInventoryFilter(stackInv, 0, 17, 42, InitItems.COIN_PENNY.get(), InitItems.COIN_NICKEL.get(), InitItems.COIN_QUARTER.get(), InitItems.COIN_DOLLAR.get()));
+        addSlot(new SlotIInventoryFilter(stackInv, 0, 25, 42,
+            Registration.COIN_ITEM.get("Zinc").get(),
+            Registration.COIN_ITEM.get("Copper").get(),
+            Registration.COIN_ITEM.get("Iron").get(),
+            Registration.COIN_ITEM.get("Brass").get(),
+            Registration.COIN_ITEM.get("Gold").get(),
+            Registration.COIN_ITEM.get("Netherite").get()
+        ));
     }
 
     public static ContainerWallet createClientWallet (final int windowId, final PlayerInventory playerInventory, final PacketBuffer data) {
@@ -60,10 +70,21 @@ public class ContainerWallet extends ContainerBase {
         ItemStack stackInInv = stackInv.getStackInSlot(0);
         ItemStack walletStack = getCurrentWalletStack();
 
-        //Checks if the Stack in the Wallet is a Coin.
-        if (stackInInv.getItem() instanceof ItemCoin) {
-
-            ItemCoin currency = ((ItemCoin) stackInInv.getItem());
+        //Checks if the Stack in the Wallet is a Create Deco Coin.
+        if (Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())) {
+            int value = 0;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Zinc").get())
+                value = 1;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Copper").get())
+                value = 5;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Iron").get())
+                value = 10;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Brass").get())
+                value = 20;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Gold").get())
+                value = 50;
+            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Netherite").get())
+                value = 100;
 
             int amountToAdd = 0;
             int stacksToRemove = 0;
@@ -72,8 +93,8 @@ public class ContainerWallet extends ContainerBase {
             for (int i = 0; i < stackInInv.getCount(); i++) {
 
                 //Checks if the Wallet can fit the added money.
-                if (CurrencyHelper.canDepositToWallet(walletStack, currency.value)) {
-                    amountToAdd += currency.value;
+                if (CurrencyHelper.canDepositToWallet(walletStack, value)) {
+                    amountToAdd += value;
                     stacksToRemove++;
                 }
 

@@ -16,7 +16,11 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 repositories {
-    
+
+    maven {
+        url "https://www.cursemaven.com"
+    }
+
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
@@ -43,6 +47,8 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 examplemod {
                     source sourceSets.main
@@ -54,6 +60,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 examplemod {
@@ -67,6 +76,9 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             args '--mod', 'cspirit', '--all', '--output', file('src/generated/resources/')
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 examplemod {
@@ -90,6 +102,13 @@ dependencies {
     //Curios API
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.2-4.0.0.1")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.2-4.0.0.1:api")
+
+    // Create
+    implementation fg.deobf("curse.maven:create-328085:3406857")
+    implementation fg.deobf("curse.maven:flywheel-486392:3411101")
+    implementation fg.deobf("curse.maven:createadditions-439890:3408016")
+    implementation fg.deobf("curse.maven:createdeco-509285:3419932")
+
 }
 
 jar {
