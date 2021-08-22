@@ -104,9 +104,9 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.2-4.0.0.1:api")
 
     // Create
-    implementation fg.deobf("curse.maven:create-328085:3406857")
-    implementation fg.deobf("curse.maven:flywheel-486392:3411101")
-    implementation fg.deobf("curse.maven:createadditions-439890:3408016")
+    implementation fg.deobf("curse.maven:create-328085:3419412")
+    implementation fg.deobf("curse.maven:flywheel-486392:3419392")
+    implementation fg.deobf("curse.maven:createadditions-439890:3430915")
     implementation fg.deobf("curse.maven:createdeco-509285:3419932")
 
 }

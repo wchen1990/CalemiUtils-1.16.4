@@ -42,7 +42,13 @@ public class ContainerWallet extends ContainerBase {
             Registration.COIN_ITEM.get("Iron").get(),
             Registration.COIN_ITEM.get("Brass").get(),
             Registration.COIN_ITEM.get("Gold").get(),
-            Registration.COIN_ITEM.get("Netherite").get()
+            Registration.COIN_ITEM.get("Netherite").get(),
+            Registration.COINSTACK_ITEM.get("Zinc").get(),
+            Registration.COINSTACK_ITEM.get("Copper").get(),
+            Registration.COINSTACK_ITEM.get("Iron").get(),
+            Registration.COINSTACK_ITEM.get("Brass").get(),
+            Registration.COINSTACK_ITEM.get("Gold").get(),
+            Registration.COINSTACK_ITEM.get("Netherite").get()
         ));
     }
 
@@ -71,20 +77,35 @@ public class ContainerWallet extends ContainerBase {
         ItemStack walletStack = getCurrentWalletStack();
 
         //Checks if the Stack in the Wallet is a Create Deco Coin.
-        if (Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())) {
+        if (
+            Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
+            || Registration.COINSTACK_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
+        ) {
             int value = 0;
             if (stackInInv.getItem() == Registration.COIN_ITEM.get("Zinc").get())
                 value = 1;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Copper").get())
+            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Copper").get())
                 value = 5;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Iron").get())
+            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Iron").get())
                 value = 10;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Brass").get())
+            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Brass").get())
                 value = 20;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Gold").get())
+            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Gold").get())
                 value = 50;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Netherite").get())
+            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Netherite").get())
                 value = 100;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Zinc").get())
+                value = 4;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Copper").get())
+                value = 20;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Iron").get())
+                value = 40;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Brass").get())
+                value = 80;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Gold").get())
+                value = 200;
+            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Netherite").get())
+                value = 400;
 
             int amountToAdd = 0;
             int stacksToRemove = 0;

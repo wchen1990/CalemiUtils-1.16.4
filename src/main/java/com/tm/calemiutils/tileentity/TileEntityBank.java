@@ -86,21 +86,36 @@ public class TileEntityBank extends TileEntityInventoryBase implements ICurrency
         if (!world.isRemote) {
 
             Item bankSlotCoinItem = getInventory().getStackInSlot(0).getItem();
-            if (Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)) {
+            if (
+                Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)
+                || Registration.COINSTACK_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)
+            ) {
 
                 int value = 0;
                 if (bankSlotCoinItem == Registration.COIN_ITEM.get("Zinc").get())
                     value = 1;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Copper").get())
+                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Copper").get())
                     value = 5;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Iron").get())
+                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Iron").get())
                     value = 10;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Brass").get())
+                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Brass").get())
                     value = 20;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Gold").get())
+                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Gold").get())
                     value = 50;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Netherite").get())
+                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Netherite").get())
                     value = 100;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Zinc").get())
+                    value = 4;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Copper").get())
+                    value = 20;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Iron").get())
+                    value = 40;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Brass").get())
+                    value = 80;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Gold").get())
+                    value = 200;
+                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Netherite").get())
+                    value = 400;
 
                 int amountToAdd = value;
                 int stackSize = 0;

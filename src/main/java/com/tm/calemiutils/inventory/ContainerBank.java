@@ -23,7 +23,13 @@ public class ContainerBank extends ContainerBase {
             Registration.COIN_ITEM.get("Iron").get(),
             Registration.COIN_ITEM.get("Brass").get(),
             Registration.COIN_ITEM.get("Gold").get(),
-            Registration.COIN_ITEM.get("Netherite").get()
+            Registration.COIN_ITEM.get("Netherite").get(),
+            Registration.COINSTACK_ITEM.get("Zinc").get(),
+            Registration.COINSTACK_ITEM.get("Copper").get(),
+            Registration.COINSTACK_ITEM.get("Iron").get(),
+            Registration.COINSTACK_ITEM.get("Brass").get(),
+            Registration.COINSTACK_ITEM.get("Gold").get(),
+            Registration.COINSTACK_ITEM.get("Netherite").get()
         )));
         tileEntity.containerSlots.set(1, addSlot(new SlotFilter(tileEntity.getInventory(), 1, 98, 18, InitItems.WALLET.get())));
     }

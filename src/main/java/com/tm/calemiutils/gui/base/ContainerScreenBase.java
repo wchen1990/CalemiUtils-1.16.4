@@ -280,6 +280,14 @@ public abstract class ContainerScreenBase<T extends ContainerBase> extends Conta
     }
 
     /**
+     * Renders the info icon's hovering text.
+     */
+    protected void addHoveringText (MatrixStack matrixStack, int mouseX, int mouseY, int posX, int posY, int width, int height, String... text) {
+        ScreenRect rect = new ScreenRect(posX, posY, width, height);
+        ScreenHelper.drawHoveringTextBox(matrixStack, mouseX, mouseY, 170, rect, text);
+    }
+
+    /**
      * Renders a currency tab.
      */
     protected void addCurrencyTab (MatrixStack matrixStack, int mouseX, int mouseY, int currency, int maxCurrency) {

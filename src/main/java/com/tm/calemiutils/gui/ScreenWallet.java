@@ -78,13 +78,6 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
 
             ItemWallet walletItem = (ItemWallet) walletStack.getItem();
 
-            /*
-            int price = ((ItemCoin) InitItems.COIN_PENNY.get()).value;
-            if (id == 1) price = ((ItemCoin) InitItems.COIN_NICKEL.get()).value;
-            else if (id == 2) price = ((ItemCoin) InitItems.COIN_QUARTER.get()).value;
-            else if (id == 3) price = ((ItemCoin) InitItems.COIN_DOLLAR.get()).value;
-            */
-
             int price = 1;
             if (id == 1) price = 5;
             else if (id == 2) price = 10;
@@ -111,16 +104,18 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
         GL11.glDisable(GL11.GL_LIGHTING);
         addInfoIcon(0);
         addInfoHoveringText(matrixStack, mouseX, mouseY, "Button Click Info", "Shift: 16, Ctrl: 64, Shift + Ctrl: 64 * 9");
+
+        // Info boxes for coins
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 24, 16, 16, "Zinc Coin", "1 " + CUConfig.economy.currencyName.get());
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 42, 16, 16, "Copper Coin", "5 " + CUConfig.economy.currencyName.get());
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 131, getScreenY() + 60, 16, 16, "Iron Coin", "10 " + CUConfig.economy.currencyName.get());
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 24, 16, 16, "Brass Coin", "20 " + CUConfig.economy.currencyName.get());
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 42, 16, 16, "Gold Coin", "50 " + CUConfig.economy.currencyName.get());
+        addHoveringText(matrixStack, mouseX, mouseY, getScreenX() + 169, getScreenY() + 60, 16, 16, "Netherite Coin", "100 " + CUConfig.economy.currencyName.get());
     }
 
     @Override
     public void drawGuiBackground(MatrixStack matrixStack, int mouseY, int mouseX) {
-/*
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_PENNY.get()), getScreenX() + 127, getScreenY() + 15);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_NICKEL.get()), getScreenX() + 127, getScreenY() + 33);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_QUARTER.get()), getScreenX() + 127, getScreenY() + 51);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(InitItems.COIN_DOLLAR.get()), getScreenX() + 127, getScreenY() + 69);
-*/
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Zinc").get()), getScreenX() + 131, getScreenY() + 24);
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Copper").get()), getScreenX() + 131, getScreenY() + 42);
         ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Iron").get()), getScreenX() + 131, getScreenY() + 60);
