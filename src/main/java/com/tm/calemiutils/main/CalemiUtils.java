@@ -100,7 +100,7 @@ public class CalemiUtils {
         MinecraftForge.EVENT_BUS.register(new WrenchEvent());
         MinecraftForge.EVENT_BUS.register(new SecurityEvent());
         MinecraftForge.EVENT_BUS.register(new MobBeaconEvent());
-        MinecraftForge.EVENT_BUS.register(new AddTradesEvent());
+        //MinecraftForge.EVENT_BUS.register(new AddTradesEvent());
 
         ArgumentTypes.register("cu:color", DyeColorArgument.class, new ArgumentSerializer<>(DyeColorArgument::color));
     }
