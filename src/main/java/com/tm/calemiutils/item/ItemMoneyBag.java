@@ -1,9 +1,7 @@
 package com.tm.calemiutils.item;
 
-import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.main.CalemiUtils;
-import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.item.base.ItemBase;
 import com.tm.calemiutils.util.helper.ItemHelper;
 import com.tm.calemiutils.util.helper.LoreHelper;
@@ -15,8 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -87,12 +87,13 @@ public class ItemMoneyBag extends ItemBase {
             amount -= (copper * copperValue);
             int zinc = (int)Math.floor((float)amount / zincValue);
 
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Netherite").get(), netherite));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Gold").get(), gold));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Brass").get(), brass));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Iron").get(), iron));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Copper").get(), copper));
-            ItemHelper.spawnStackAtEntity(world, player, new ItemStack(Registration.COIN_ITEM.get("Zinc").get(), zinc));
+            String formatString = "createdeco:%s&%d";
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "netherite_coin", netherite)));
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "gold_coin", gold)));
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "brass_coin", brass)));
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "iron_coin", iron)));
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "copper_coin", copper)));
+            ItemHelper.spawnStackAtEntity(world, player, ItemHelper.getStackFromString(String.format(formatString, "zinc_coin", zinc)));
         }
     }
 }

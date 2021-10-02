@@ -1,26 +1,26 @@
 package com.tm.calemiutils.inventory;
 
-import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.init.InitContainerTypes;
-import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.inventory.base.ContainerBase;
 import com.tm.calemiutils.inventory.base.SlotIInventoryFilter;
-import com.tm.calemiutils.item.ItemCoin;
-import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.util.helper.CurrencyHelper;
 import com.tm.calemiutils.util.helper.ItemHelper;
-import com.tm.calemiutils.util.helper.LogHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.ClickType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class ContainerWallet extends ContainerBase {
 
@@ -36,21 +36,10 @@ public class ContainerWallet extends ContainerBase {
         this.stackInv = stackInv;
         this.selectedSlot = selectedSlot;
 
+        Item[] combinedList = Stream.concat(CUConfig.coins.stream(), CUConfig.coinStacks.stream()).map((itemStr) -> ItemHelper.getItemFromString(itemStr)).toArray(Item[]::new);
+
         //New Inventory
-        addSlot(new SlotIInventoryFilter(stackInv, 0, 25, 42,
-            Registration.COIN_ITEM.get("Zinc").get(),
-            Registration.COIN_ITEM.get("Copper").get(),
-            Registration.COIN_ITEM.get("Iron").get(),
-            Registration.COIN_ITEM.get("Brass").get(),
-            Registration.COIN_ITEM.get("Gold").get(),
-            Registration.COIN_ITEM.get("Netherite").get(),
-            Registration.COINSTACK_ITEM.get("Zinc").get(),
-            Registration.COINSTACK_ITEM.get("Copper").get(),
-            Registration.COINSTACK_ITEM.get("Iron").get(),
-            Registration.COINSTACK_ITEM.get("Brass").get(),
-            Registration.COINSTACK_ITEM.get("Gold").get(),
-            Registration.COINSTACK_ITEM.get("Netherite").get()
-        ));
+        addSlot(new SlotIInventoryFilter(stackInv, 0, 25, 42, combinedList));
     }
 
     public static ContainerWallet createClientWallet (final int windowId, final PlayerInventory playerInventory, final PacketBuffer data) {
@@ -79,8 +68,8 @@ public class ContainerWallet extends ContainerBase {
 
         //Checks if the Stack in the Wallet is a Create Deco Coin.
         if (
-            Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
-            || Registration.COINSTACK_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == stackInInv.getItem())
+            CUConfig.coins.stream().anyMatch((coinStr) -> ItemHelper.getItemFromString(coinStr) == stackInInv.getItem())
+            || CUConfig.coinStacks.stream().anyMatch((coinStackStr) -> ItemHelper.getItemFromString(coinStackStr) == stackInInv.getItem())
         ) {
             int netheriteValue = CUConfig.coinValues.netherite.get();
             int goldValue = CUConfig.coinValues.gold.get();
@@ -90,29 +79,29 @@ public class ContainerWallet extends ContainerBase {
             int zincValue = CUConfig.coinValues.zinc.get();
 
             int value = 0;
-            if (stackInInv.getItem() == Registration.COIN_ITEM.get("Zinc").get())
+            if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:zinc_coin"))
                 value = zincValue;
-            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Copper").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:copper_coin"))
                 value = copperValue;
-            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Iron").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:iron_coin"))
                 value = ironValue;
-            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Brass").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:brass_coin"))
                 value = brassValue;
-            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Gold").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:gold_coin"))
                 value = goldValue;
-            else if (stackInInv.getItem() == Registration.COIN_ITEM.get("Netherite").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:netherite_coin"))
                 value = netheriteValue;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Zinc").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:zinc_coinstack"))
                 value = zincValue * 4;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Copper").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:copper_coinstack"))
                 value = copperValue * 4;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Iron").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:iron_coinstack"))
                 value = ironValue * 4;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Brass").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:brass_coinstack"))
                 value = brassValue * 4;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Gold").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:gold_coinstack"))
                 value = goldValue * 4;
-            else if (stackInInv.getItem() == Registration.COINSTACK_ITEM.get("Netherite").get())
+            else if (stackInInv.getItem() == ItemHelper.getItemFromString("createdeco:netherite_coinstack"))
                 value = netheriteValue * 4;
 
             int amountToAdd = 0;

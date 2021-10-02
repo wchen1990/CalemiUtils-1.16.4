@@ -107,7 +107,7 @@ dependencies {
     implementation fg.deobf("curse.maven:create-328085:3419412")
     implementation fg.deobf("curse.maven:flywheel-486392:3419392")
     implementation fg.deobf("curse.maven:createadditions-439890:3430915")
-    implementation fg.deobf("curse.maven:createdeco-509285:3419932")
+    implementation fg.deobf("curse.maven:createdeco-509285:3475200")
 
 }
 

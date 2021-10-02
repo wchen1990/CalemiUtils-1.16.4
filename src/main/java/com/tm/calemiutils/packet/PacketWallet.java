@@ -1,9 +1,6 @@
 package com.tm.calemiutils.packet;
 
-import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
-import com.tm.calemiutils.init.InitItems;
-import com.tm.calemiutils.item.ItemCoin;
 import com.tm.calemiutils.item.ItemWallet;
 import com.tm.calemiutils.util.helper.CurrencyHelper;
 import com.tm.calemiutils.util.helper.ItemHelper;
@@ -64,31 +61,31 @@ public class PacketWallet {
                     int copperValue = CUConfig.coinValues.copper.get();
                     int zincValue = CUConfig.coinValues.zinc.get();
 
-                    Item item = Registration.COIN_ITEM.get("Zinc").get();
+                    Item item = ItemHelper.getItemFromString("createdeco:zinc_coin");
                     int price = zincValue;
 
                     if (buttonId == 1) {
-                        item = Registration.COIN_ITEM.get("Copper").get();
+                        item = ItemHelper.getItemFromString("createdeco:copper_coin");
                         price = copperValue;
                     }
 
                     else if (buttonId == 2) {
-                        item = Registration.COIN_ITEM.get("Iron").get();
+                        item = ItemHelper.getItemFromString("createdeco:iron_coin");
                         price = ironValue;
                     }
 
                     else if (buttonId == 3) {
-                        item = Registration.COIN_ITEM.get("Brass").get();
+                        item = ItemHelper.getItemFromString("createdeco:brass_coin");
                         price = brassValue;
                     }
 
                     else if (buttonId == 4) {
-                        item = Registration.COIN_ITEM.get("Gold").get();
+                        item = ItemHelper.getItemFromString("createdeco:gold_coin");
                         price = goldValue;
                     }
 
                     else if (buttonId == 5) {
-                        item = Registration.COIN_ITEM.get("Netherite").get();
+                        item = ItemHelper.getItemFromString("createdeco:netherite_coin");
                         price = netheriteValue;
                     }
 

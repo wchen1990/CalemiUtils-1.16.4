@@ -4,6 +4,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,6 +12,9 @@ import java.util.stream.Collectors;
 public class CUConfig {
 
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+
+    public static final List<String> coins = Arrays.asList(new String[] {"createdeco:netherite_coin", "createdeco:gold_coin", "createdeco:brass_coin", "createdeco:iron_coin", "createdeco:copper_coin", "createdeco:zinc_coin"});
+    public static final List<String> coinStacks = Arrays.asList(new String[] {"createdeco:netherite_coinstack", "createdeco:gold_coinstack", "createdeco:brass_coinstack", "createdeco:iron_coinstack", "createdeco:copper_coinstack", "createdeco:zinc_coinstack"});
 
     public static final CategoryTooltips tooltips = new CategoryTooltips(BUILDER);
     public static final CategoryWorldGen worldGen = new CategoryWorldGen(BUILDER);

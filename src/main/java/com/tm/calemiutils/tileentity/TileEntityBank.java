@@ -1,11 +1,9 @@
 package com.tm.calemiutils.tileentity;
 
-import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.gui.ScreenBank;
 import com.tm.calemiutils.init.InitTileEntityTypes;
 import com.tm.calemiutils.inventory.ContainerBank;
-import com.tm.calemiutils.item.ItemCoin;
 import com.tm.calemiutils.security.ISecurity;
 import com.tm.calemiutils.security.SecurityProfile;
 import com.tm.calemiutils.tileentity.base.ICurrencyNetworkBank;
@@ -13,6 +11,7 @@ import com.tm.calemiutils.tileentity.base.ICurrencyNetworkUnit;
 import com.tm.calemiutils.tileentity.base.TileEntityInventoryBase;
 import com.tm.calemiutils.util.Location;
 import com.tm.calemiutils.util.VeinScan;
+import com.tm.calemiutils.util.helper.ItemHelper;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -87,8 +86,8 @@ public class TileEntityBank extends TileEntityInventoryBase implements ICurrency
 
             Item bankSlotCoinItem = getInventory().getStackInSlot(0).getItem();
             if (
-                Registration.COIN_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)
-                || Registration.COINSTACK_ITEM.values().stream().anyMatch((itemEntry) -> itemEntry.get() == bankSlotCoinItem)
+                CUConfig.coins.stream().anyMatch((coinStr) -> ItemHelper.getItemFromString(coinStr) == bankSlotCoinItem)
+                || CUConfig.coinStacks.stream().anyMatch((coinStackStr) -> ItemHelper.getItemFromString(coinStackStr) == bankSlotCoinItem)
             ) {
                 int netheriteValue = CUConfig.coinValues.netherite.get();
                 int goldValue = CUConfig.coinValues.gold.get();
@@ -98,29 +97,29 @@ public class TileEntityBank extends TileEntityInventoryBase implements ICurrency
                 int zincValue = CUConfig.coinValues.zinc.get();
 
                 int value = 0;
-                if (bankSlotCoinItem == Registration.COIN_ITEM.get("Zinc").get())
+                if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:zinc_coin"))
                     value = zincValue;
-                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Copper").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:copper_coin"))
                     value = copperValue;
-                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Iron").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:iron_coin"))
                     value = ironValue;
-                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Brass").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:brass_coin"))
                     value = brassValue;
-                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Gold").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:gold_coin"))
                     value = goldValue;
-                else if (bankSlotCoinItem == Registration.COIN_ITEM.get("Netherite").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:netherite_coin"))
                     value = netheriteValue;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Zinc").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:zinc_coinstack"))
                     value = zincValue * 4;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Copper").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:copper_coinstack"))
                     value = copperValue * 4;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Iron").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:iron_coinstack"))
                     value = ironValue * 4;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Brass").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:brass_coinstack"))
                     value = brassValue * 4;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Gold").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:gold_coinstack"))
                     value = goldValue * 4;
-                else if (bankSlotCoinItem == Registration.COINSTACK_ITEM.get("Netherite").get())
+                else if (bankSlotCoinItem == ItemHelper.getItemFromString("createdeco:netherite_coinstack"))
                     value = netheriteValue * 4;
 
                 int amountToAdd = value;

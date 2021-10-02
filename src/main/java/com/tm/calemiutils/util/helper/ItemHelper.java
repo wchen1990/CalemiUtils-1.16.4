@@ -4,12 +4,15 @@ import com.tm.calemiutils.util.Location;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Random;
@@ -58,11 +61,20 @@ public class ItemHelper {
                 String registryName = data[0];
                 int stackSize = Integer.parseInt(data[1]);
 
-                return new ItemStack(Registry.ITEM.getOrDefault(new ResourceLocation(registryName)), stackSize);
+                return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(registryName)), stackSize);
             }
         }
 
         return ItemStack.EMPTY;
+    }
+
+    public static Item getItemFromString (String string) {
+
+        if (!string.equalsIgnoreCase("null")) {
+            return ForgeRegistries.ITEMS.getValue(new ResourceLocation(string));
+        }
+
+        return Items.AIR;
     }
 
     public static void attachNBTFromString (ItemStack stack, String nbtString) {

@@ -1,13 +1,10 @@
 package com.tm.calemiutils.gui;
 
-import com.github.talrey.createdeco.Registration;
 import com.tm.calemiutils.config.CUConfig;
 import com.tm.calemiutils.main.CalemiUtils;
 import com.tm.calemiutils.gui.base.ButtonRect;
 import com.tm.calemiutils.gui.base.ContainerScreenBase;
-import com.tm.calemiutils.init.InitItems;
 import com.tm.calemiutils.inventory.ContainerWallet;
-import com.tm.calemiutils.item.ItemCoin;
 import com.tm.calemiutils.item.ItemWallet;
 import com.tm.calemiutils.packet.PacketWallet;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -131,12 +128,12 @@ public class ScreenWallet extends ContainerScreenBase<ContainerWallet> {
 
     @Override
     public void drawGuiBackground(MatrixStack matrixStack, int mouseY, int mouseX) {
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Zinc").get()), getScreenX() + 131, getScreenY() + 24);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Copper").get()), getScreenX() + 131, getScreenY() + 42);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Iron").get()), getScreenX() + 131, getScreenY() + 60);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Brass").get()), getScreenX() + 169, getScreenY() + 24);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Gold").get()), getScreenX() + 169, getScreenY() + 42);
-        ScreenHelper.drawItemStack(itemRenderer, new ItemStack(Registration.COIN_ITEM.get("Netherite").get()), getScreenX() + 169, getScreenY() + 60);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:zinc_coin&1"), getScreenX() + 131, getScreenY() + 24);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:copper_coin&1"), getScreenX() + 131, getScreenY() + 42);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:iron_coin&1"), getScreenX() + 131, getScreenY() + 60);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:brass_coin&1"), getScreenX() + 169, getScreenY() + 24);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:gold_coin&1"), getScreenX() + 169, getScreenY() + 42);
+        ScreenHelper.drawItemStack(itemRenderer, ItemHelper.getStackFromString("createdeco:netherite_coin&1"), getScreenX() + 169, getScreenY() + 60);
 
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glColor4f(1, 1, 1, 1);
